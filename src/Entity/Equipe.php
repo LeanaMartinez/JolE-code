@@ -37,6 +37,16 @@ class Equipe
     protected $pays;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $jeux;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $match;
+
+    /**
      * @return mixed
      */
     public function getId()

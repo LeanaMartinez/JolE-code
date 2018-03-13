@@ -32,9 +32,19 @@ class Jeux
     protected $synopsis;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $rules;
+
+    /**
      * @ORM\Column(type="date")
      */
     protected $release;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $number_player;
 
     /**
      * @return mixed
@@ -116,5 +126,36 @@ class Jeux
         $this->release = $release;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getRules()
+    {
+        return $this->rules;
+    }
+
+    /**
+     * @param mixed $rules
+     */
+    public function setRules($rules)
+    {
+        $this->rules = $rules;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNumberPlayer()
+    {
+        return $this->number_player;
+    }
+
+    /**
+     * @param mixed $number_player
+     */
+    public function setNumberPlayer($number_player)
+    {
+        $this->number_player = $number_player;
+    }
 
 }
