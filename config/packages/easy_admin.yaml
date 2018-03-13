@@ -5,3 +5,4 @@ easy_admin:
         - App\Entity\Game
         - App\Entity\Match
         - App\Entity\Team
+        - App\Entity\User
