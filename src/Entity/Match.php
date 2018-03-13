@@ -19,12 +19,12 @@ class Match
     /**
      * @ORM\Column(type="string")
      */
-    protected $equipeA;
+    protected $teamA;
 
     /**
      * @ORM\Column(type="string")
      */
-    protected $equipeB;
+    protected $teamB;
 
     /**
      * @ORM\Column(type="datetime")

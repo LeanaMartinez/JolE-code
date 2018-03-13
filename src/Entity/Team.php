@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\EquipeRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TeamRepository")
  */
-class Equipe
+class Team
 {
     /**
      * @ORM\Id
@@ -19,7 +19,7 @@ class Equipe
     /**
      * @ORM\Column(type="string")
      */
-    protected $nom;
+    protected $name;
 
     /**
      * @ORM\Column(type="string")
@@ -34,12 +34,12 @@ class Equipe
     /**
      * @ORM\Column(type="string")
      */
-    protected $pays;
+    protected $country;
 
     /**
      * @ORM\Column(type="integer")
      */
-    protected $jeux;
+    protected $games;
 
     /**
      * @ORM\Column(type="integer")
@@ -67,15 +67,15 @@ class Equipe
      */
     public function getNom()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
      * @param mixed $nom
      */
-    public function setNom($nom)
+    public function setNom($name)
     {
-        $this->nom = $nom;
+        $this->name = $name;
     }
 
     /**
