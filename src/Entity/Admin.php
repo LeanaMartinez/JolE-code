@@ -14,7 +14,7 @@ class Admin
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    public $id;
 
     // add your own fields
 }
