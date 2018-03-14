@@ -42,7 +42,7 @@ class Game
     protected $release;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer")
      */
     protected $player_number;
 
