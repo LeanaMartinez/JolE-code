@@ -34,6 +34,16 @@ class User implements UserInterface
     protected $password;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $fav_team;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $fav_game;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -84,4 +94,37 @@ class User implements UserInterface
     public function eraseCredentials()
     {
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFavTeam()
+    {
+        return $this->fav_team;
+    }
+
+    /**
+     * @param mixed $fav_team
+     */
+    public function setFavTeam($fav_team)
+    {
+        $this->fav_team = $fav_team;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFavGame()
+    {
+        return $this->fav_game;
+    }
+
+    /**
+     * @param mixed $fav_game
+     */
+    public function setFavGame($fav_game)
+    {
+        $this->fav_game = $fav_game;
+    }
+
 }
