@@ -39,12 +39,12 @@ class Team
     /**
      * @ORM\Column(type="integer")
      */
-    protected $games;
+    protected $game_id;
 
     /**
      * @ORM\Column(type="integer")
      */
-    protected $match;
+    protected $match_id;
 
     /**
      * @return mixed
@@ -65,15 +65,15 @@ class Team
     /**
      * @return mixed
      */
-    public function getNom()
+    public function getName()
     {
         return $this->name;
     }
 
     /**
-     * @param mixed $nom
+     * @param mixed $name
      */
-    public function setNom($name)
+    public function setName($name)
     {
         $this->name = $name;
     }
@@ -113,17 +113,50 @@ class Team
     /**
      * @return mixed
      */
-    public function getPays()
+    public function getCountry()
     {
-        return $this->pays;
+        return $this->country;
     }
 
     /**
-     * @param mixed $pays
+     * @param mixed $country
      */
-    public function setPays($pays)
+    public function setCountry($country)
     {
-        $this->pays = $pays;
+        $this->country = $country;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getGameId()
+    {
+        return $this->game_id;
+    }
+
+    /**
+     * @param mixed $game_id
+     */
+    public function setGameId($game_id)
+    {
+        $this->game_id = $game_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMatchId()
+    {
+        return $this->match_id;
+    }
+
+    /**
+     * @param mixed $match_id
+     */
+    public function setMatchId($match_id)
+    {
+        $this->match_id = $match_id;
+    }
+
 
 }
