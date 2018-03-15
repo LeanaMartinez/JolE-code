@@ -74,17 +74,11 @@
           <root url="file://$MODULE_DIR$/vendor/doctrine/lexer" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/migrations" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/orm" />
-<<<<<<< Updated upstream
-          <root url="file://$MODULE_DIR$/vendor/easycorp/easyadmin-bundle" />
-          <root url="file://$MODULE_DIR$/vendor/gedmo/doctrine-extensions" />
-          <root url="file://$MODULE_DIR$/vendor/jdorn/sql-formatter" />
-=======
           <root url="file://$MODULE_DIR$/vendor/easycorp/easy-log-handler" />
           <root url="file://$MODULE_DIR$/vendor/easycorp/easyadmin-bundle" />
           <root url="file://$MODULE_DIR$/vendor/gedmo/doctrine-extensions" />
           <root url="file://$MODULE_DIR$/vendor/jdorn/sql-formatter" />
           <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
->>>>>>> Stashed changes
           <root url="file://$MODULE_DIR$/vendor/ocramius/package-versions" />
           <root url="file://$MODULE_DIR$/vendor/ocramius/proxy-manager" />
           <root url="file://$MODULE_DIR$/vendor/pagerfanta/pagerfanta" />
@@ -101,11 +95,8 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/config" />
           <root url="file://$MODULE_DIR$/vendor/symfony/console" />
           <root url="file://$MODULE_DIR$/vendor/symfony/debug" />
-<<<<<<< Updated upstream
-=======
           <root url="file://$MODULE_DIR$/vendor/symfony/debug-bundle" />
           <root url="file://$MODULE_DIR$/vendor/symfony/debug-pack" />
->>>>>>> Stashed changes
           <root url="file://$MODULE_DIR$/vendor/symfony/dependency-injection" />
           <root url="file://$MODULE_DIR$/vendor/symfony/doctrine-bridge" />
           <root url="file://$MODULE_DIR$/vendor/symfony/dotenv" />
@@ -120,16 +111,11 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/inflector" />
           <root url="file://$MODULE_DIR$/vendor/symfony/intl" />
           <root url="file://$MODULE_DIR$/vendor/symfony/maker-bundle" />
-<<<<<<< Updated upstream
-          <root url="file://$MODULE_DIR$/vendor/symfony/options-resolver" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/orm-pack" />
-=======
           <root url="file://$MODULE_DIR$/vendor/symfony/monolog-bridge" />
           <root url="file://$MODULE_DIR$/vendor/symfony/monolog-bundle" />
           <root url="file://$MODULE_DIR$/vendor/symfony/options-resolver" />
           <root url="file://$MODULE_DIR$/vendor/symfony/orm-pack" />
           <root url="file://$MODULE_DIR$/vendor/symfony/phpunit-bridge" />
->>>>>>> Stashed changes
           <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-apcu" />
           <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-intl-icu" />
           <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
@@ -137,27 +123,18 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-php70" />
           <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-util" />
           <root url="file://$MODULE_DIR$/vendor/symfony/process" />
-<<<<<<< Updated upstream
-=======
           <root url="file://$MODULE_DIR$/vendor/symfony/profiler-pack" />
->>>>>>> Stashed changes
           <root url="file://$MODULE_DIR$/vendor/symfony/property-access" />
           <root url="file://$MODULE_DIR$/vendor/symfony/routing" />
           <root url="file://$MODULE_DIR$/vendor/symfony/security" />
           <root url="file://$MODULE_DIR$/vendor/symfony/security-bundle" />
-<<<<<<< Updated upstream
-=======
           <root url="file://$MODULE_DIR$/vendor/symfony/stopwatch" />
->>>>>>> Stashed changes
           <root url="file://$MODULE_DIR$/vendor/symfony/translation" />
           <root url="file://$MODULE_DIR$/vendor/symfony/twig-bridge" />
           <root url="file://$MODULE_DIR$/vendor/symfony/twig-bundle" />
           <root url="file://$MODULE_DIR$/vendor/symfony/validator" />
-<<<<<<< Updated upstream
-=======
           <root url="file://$MODULE_DIR$/vendor/symfony/var-dumper" />
           <root url="file://$MODULE_DIR$/vendor/symfony/web-profiler-bundle" />
->>>>>>> Stashed changes
           <root url="file://$MODULE_DIR$/vendor/symfony/web-server-bundle" />
           <root url="file://$MODULE_DIR$/vendor/symfony/yaml" />
           <root url="file://$MODULE_DIR$/vendor/twig/extensions" />
@@ -183,17 +160,11 @@
           <root url="file://$MODULE_DIR$/vendor/doctrine/lexer" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/migrations" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/orm" />
-<<<<<<< Updated upstream
-          <root url="file://$MODULE_DIR$/vendor/easycorp/easyadmin-bundle" />
-          <root url="file://$MODULE_DIR$/vendor/gedmo/doctrine-extensions" />
-          <root url="file://$MODULE_DIR$/vendor/jdorn/sql-formatter" />
-=======
           <root url="file://$MODULE_DIR$/vendor/easycorp/easy-log-handler" />
           <root url="file://$MODULE_DIR$/vendor/easycorp/easyadmin-bundle" />
           <root url="file://$MODULE_DIR$/vendor/gedmo/doctrine-extensions" />
           <root url="file://$MODULE_DIR$/vendor/jdorn/sql-formatter" />
           <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
->>>>>>> Stashed changes
           <root url="file://$MODULE_DIR$/vendor/ocramius/package-versions" />
           <root url="file://$MODULE_DIR$/vendor/ocramius/proxy-manager" />
           <root url="file://$MODULE_DIR$/vendor/pagerfanta/pagerfanta" />
@@ -210,11 +181,8 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/config" />
           <root url="file://$MODULE_DIR$/vendor/symfony/console" />
           <root url="file://$MODULE_DIR$/vendor/symfony/debug" />
-<<<<<<< Updated upstream
-=======
           <root url="file://$MODULE_DIR$/vendor/symfony/debug-bundle" />
           <root url="file://$MODULE_DIR$/vendor/symfony/debug-pack" />
->>>>>>> Stashed changes
           <root url="file://$MODULE_DIR$/vendor/symfony/dependency-injection" />
           <root url="file://$MODULE_DIR$/vendor/symfony/doctrine-bridge" />
           <root url="file://$MODULE_DIR$/vendor/symfony/dotenv" />
@@ -229,16 +197,11 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/inflector" />
           <root url="file://$MODULE_DIR$/vendor/symfony/intl" />
           <root url="file://$MODULE_DIR$/vendor/symfony/maker-bundle" />
-<<<<<<< Updated upstream
-          <root url="file://$MODULE_DIR$/vendor/symfony/options-resolver" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/orm-pack" />
-=======
           <root url="file://$MODULE_DIR$/vendor/symfony/monolog-bridge" />
           <root url="file://$MODULE_DIR$/vendor/symfony/monolog-bundle" />
           <root url="file://$MODULE_DIR$/vendor/symfony/options-resolver" />
           <root url="file://$MODULE_DIR$/vendor/symfony/orm-pack" />
           <root url="file://$MODULE_DIR$/vendor/symfony/phpunit-bridge" />
->>>>>>> Stashed changes
           <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-apcu" />
           <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-intl-icu" />
           <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
@@ -246,27 +209,18 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-php70" />
           <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-util" />
           <root url="file://$MODULE_DIR$/vendor/symfony/process" />
-<<<<<<< Updated upstream
-=======
           <root url="file://$MODULE_DIR$/vendor/symfony/profiler-pack" />
->>>>>>> Stashed changes
           <root url="file://$MODULE_DIR$/vendor/symfony/property-access" />
           <root url="file://$MODULE_DIR$/vendor/symfony/routing" />
           <root url="file://$MODULE_DIR$/vendor/symfony/security" />
           <root url="file://$MODULE_DIR$/vendor/symfony/security-bundle" />
-<<<<<<< Updated upstream
-=======
           <root url="file://$MODULE_DIR$/vendor/symfony/stopwatch" />
->>>>>>> Stashed changes
           <root url="file://$MODULE_DIR$/vendor/symfony/translation" />
           <root url="file://$MODULE_DIR$/vendor/symfony/twig-bridge" />
           <root url="file://$MODULE_DIR$/vendor/symfony/twig-bundle" />
           <root url="file://$MODULE_DIR$/vendor/symfony/validator" />
-<<<<<<< Updated upstream
-=======
           <root url="file://$MODULE_DIR$/vendor/symfony/var-dumper" />
           <root url="file://$MODULE_DIR$/vendor/symfony/web-profiler-bundle" />
->>>>>>> Stashed changes
           <root url="file://$MODULE_DIR$/vendor/symfony/web-server-bundle" />
           <root url="file://$MODULE_DIR$/vendor/symfony/yaml" />
           <root url="file://$MODULE_DIR$/vendor/twig/extensions" />
