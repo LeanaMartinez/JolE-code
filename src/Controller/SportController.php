@@ -16,35 +16,5 @@ class SportController extends Controller
             'controller_name' => 'SportController',
         ]);
     }
-
-    /**
-     * @Route("/team", name="team")
-     */
-    public function team()
-    {
-        return $this->render('Content/team.html.twig', [
-            'controller_name' => 'SportController',
-        ]);
-    }
-
-    /**
-     * @Route("/game", name="game")
-     */
-    public function game()
-    {
-        return $this->render('Content/game.html.twig', [
-            'controller_name' => 'SportController',
-        ]);
-    }
-
-    /**
-     * @Route("/profile", name="profile")
-     */
-    public function profile()
-    {
-        return $this->render('Content/profile.html.twig', [
-            'controller_name' => 'SportController',
-        ]);
-    }
 }
 
