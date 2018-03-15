@@ -151,6 +151,38 @@ class Game
     }
 
     /**
+     * @return mixed
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
+
+    /**
+     * @param mixed $teams
+     */
+    public function setTeams($teams)
+    {
+        $this->teams = $teams;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMatches()
+    {
+        return $this->matches;
+    }
+
+    /**
+     * @param mixed $matches
+     */
+    public function setMatches($matches)
+    {
+        $this->matches = $matches;
+    }
+
+    /**
      * @param mixed $player_number
      */
     public function setPlayerNumber($player_number)
