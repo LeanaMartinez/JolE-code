@@ -5,9 +5,10 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="_match")
  * @ORM\Entity(repositoryClass="App\Repository\MatchRepository")
  */
-class Matches
+class Match
 {
     /**
      * @ORM\Id
