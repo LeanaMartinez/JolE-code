@@ -8,12 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class SportController extends Controller
 {
     /**
-     * @Route("/sport", name="sport")
+     * @Route("/home", name="home")
      */
-    public function index()
+    public function home()
     {
-        return $this->render('sport/index.html.twig', [
+        return $this->render('Content/home.html.twig', [
             'controller_name' => 'SportController',
         ]);
     }
 }
+
