@@ -52,7 +52,7 @@ class Game
     protected $teams;
 
     /**
-     * @ORM\OneToMany(targetEntity="Match", mappedBy="game", cascade={"all"}, fetch="LAZY")
+     * @ORM\OneToMany(targetEntity="Matches", mappedBy="game", cascade={"all"}, fetch="LAZY")
      */
     protected $matches;
 
