@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,29 +23,29 @@ class Game
     protected $name;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $banner;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      */
     protected $synopsis;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $rules;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    protected $release;
+    protected $releaseDate;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    protected $player_number;
+    protected $playerNumber;
 
     /**
      * @ORM\OneToMany(targetEntity="Team", mappedBy="game", cascade={"all"}, fetch="LAZY")
@@ -54,7 +55,13 @@ class Game
     /**
      * @ORM\OneToMany(targetEntity="Match", mappedBy="game", cascade={"all"}, fetch="LAZY")
      */
-    protected $matches;
+    protected $match;
+
+    public function __construct()
+    {
+        $this->teams = new ArrayCollection();
+        $this->match = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -123,17 +130,17 @@ class Game
     /**
      * @return mixed
      */
-    public function getRelease()
+    public function getReleaseDate()
     {
-        return $this->release;
+        return $this->releaseDate;
     }
 
     /**
-     * @param mixed $release
+     * @param mixed $releaseDate
      */
-    public function setRelease($release)
+    public function setReleaseDate($releaseDate)
     {
-        $this->release = $release;
+        $this->releaseDate = $releaseDate;
     }
 
     /**
@@ -157,7 +164,15 @@ class Game
      */
     public function getPlayerNumber()
     {
-        return $this->player_number;
+        return $this->playerNumber;
+    }
+
+    /**
+     * @param mixed $playerNumber
+     */
+    public function setPlayerNumber($playerNumber)
+    {
+        $this->playerNumber = $playerNumber;
     }
 
     /**
@@ -179,25 +194,22 @@ class Game
     /**
      * @return mixed
      */
-    public function getMatches()
+    public function getMatch()
     {
-        return $this->matches;
+        return $this->match;
     }
 
     /**
-     * @param mixed $matches
+     * @param mixed $match
      */
-    public function setMatches($matches)
+    public function setMatch($match)
     {
-        $this->matches = $matches;
+        $this->match = $match;
     }
 
-    /**
-     * @param mixed $player_number
-     */
-    public function setPlayerNumber($player_number)
-    {
-        $this->player_number = $player_number;
-    }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
 }
