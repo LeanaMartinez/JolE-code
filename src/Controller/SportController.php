@@ -8,12 +8,43 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class SportController extends Controller
 {
     /**
-     * @Route("/sport", name="sport")
+     * @Route("/home", name="home")
      */
-    public function index()
+    public function home()
     {
-        return $this->render('sport/index.html.twig', [
+        return $this->render('Content/home.html.twig', [
+            'controller_name' => 'SportController',
+        ]);
+    }
+
+    /**
+     * @Route("/team", name="team")
+     */
+    public function team()
+    {
+        return $this->render('Content/team.html.twig', [
+            'controller_name' => 'SportController',
+        ]);
+    }
+
+    /**
+     * @Route("/game", name="game")
+     */
+    public function game()
+    {
+        return $this->render('Content/game.html.twig', [
+            'controller_name' => 'SportController',
+        ]);
+    }
+
+    /**
+     * @Route("/profile", name="profile")
+     */
+    public function profile()
+    {
+        return $this->render('Content/profile.html.twig', [
             'controller_name' => 'SportController',
         ]);
     }
 }
+
