@@ -17,12 +17,16 @@ class Match
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * One Product has One Shipment.
+     * @ORM\OneToOne(targetEntity="Team")
+     * @ORM\JoinColumn(name="team_a_id", referencedColumnName="id")
      */
     protected $teamA;
 
     /**
-     * @ORM\Column(type="string")
+     * One Product has One Shipment.
+     * @ORM\OneToOne(targetEntity="Team")
+     * @ORM\JoinColumn(name="team_b_id", referencedColumnName="id")
      */
     protected $teamB;
 
@@ -37,9 +41,11 @@ class Match
     protected $score;
 
     /**
-     * @ORM\Column(type="integer")
+     * Many match for a game
+     * @ORM\ManyToOne(targetEntity="Game", inversedBy="matches")
+     * @ORM\JoinColumn(nullable=false, name="game", referencedColumnName="id")
      */
-    protected $game_id;
+    protected $game;
 
     /**
      * @ORM\Column(type="datetime")

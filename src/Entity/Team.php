@@ -37,14 +37,11 @@ class Team
     protected $country;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="Game", inversedBy="teams")
+     * @ORM\JoinColumn(nullable=false, name="game", referencedColumnName="id")
      */
-    protected $game_id;
+    protected $game;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $match_id;
 
     /**
      * @return mixed
@@ -129,34 +126,19 @@ class Team
     /**
      * @return mixed
      */
-    public function getGameId()
+    public function getGame()
     {
-        return $this->game_id;
+        return $this->game;
     }
 
     /**
-     * @param mixed $game_id
+     * @param mixed $game
      */
-    public function setGameId($game_id)
+    public function setGame($game)
     {
-        $this->game_id = $game_id;
+        $this->game = $game;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getMatchId()
-    {
-        return $this->match_id;
-    }
-
-    /**
-     * @param mixed $match_id
-     */
-    public function setMatchId($match_id)
-    {
-        $this->match_id = $match_id;
-    }
 
 
 }

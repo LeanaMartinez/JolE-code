@@ -47,6 +47,16 @@ class Game
     protected $player_number;
 
     /**
+     * @ORM\OneToMany(targetEntity="Team", mappedBy="game", cascade={"all"}, fetch="LAZY")
+     */
+    protected $teams;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Match", mappedBy="game", cascade={"all"}, fetch="LAZY")
+     */
+    protected $matches;
+
+    /**
      * @return mixed
      */
     public function getId()
