@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\EquipeRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TeamRepository")
  */
-class Equipe
+class Team
 {
     /**
      * @ORM\Id
@@ -19,7 +19,7 @@ class Equipe
     /**
      * @ORM\Column(type="string")
      */
-    protected $nom;
+    protected $name;
 
     /**
      * @ORM\Column(type="string")
@@ -34,17 +34,14 @@ class Equipe
     /**
      * @ORM\Column(type="string")
      */
-    protected $pays;
+    protected $country;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="Game", inversedBy="teams")
+     * @ORM\JoinColumn(nullable=false, name="game", referencedColumnName="id")
      */
-    protected $jeux;
+    protected $game;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $match;
 
     /**
      * @return mixed
@@ -65,17 +62,17 @@ class Equipe
     /**
      * @return mixed
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
-     * @param mixed $nom
+     * @param mixed $name
      */
-    public function setNom($nom)
+    public function setName($name)
     {
-        $this->nom = $nom;
+        $this->name = $name;
     }
 
     /**
@@ -113,17 +110,35 @@ class Equipe
     /**
      * @return mixed
      */
-    public function getPays()
+    public function getCountry()
     {
-        return $this->pays;
+        return $this->country;
     }
 
     /**
-     * @param mixed $pays
+     * @param mixed $country
      */
-    public function setPays($pays)
+    public function setCountry($country)
     {
-        $this->pays = $pays;
+        $this->country = $country;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getGame()
+    {
+        return $this->game;
+    }
+
+    /**
+     * @param mixed $game
+     */
+    public function setGame($game)
+    {
+        $this->game = $game;
+    }
+
+
 
 }

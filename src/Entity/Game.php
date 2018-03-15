@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\JeuxRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\GameRepository")
  */
-class Jeux
+class Game
 {
     /**
      * @ORM\Id
@@ -19,12 +19,12 @@ class Jeux
     /**
      * @ORM\Column(type="string")
      */
-    protected $nom;
+    protected $name;
 
     /**
      * @ORM\Column(type="string")
      */
-    protected $affiche;
+    protected $banner;
 
     /**
      * @ORM\Column(type="string")
@@ -42,9 +42,19 @@ class Jeux
     protected $release;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer")
      */
-    protected $number_player;
+    protected $player_number;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Team", mappedBy="game", cascade={"all"}, fetch="LAZY")
+     */
+    protected $teams;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Match", mappedBy="game", cascade={"all"}, fetch="LAZY")
+     */
+    protected $matches;
 
     /**
      * @return mixed
@@ -65,33 +75,17 @@ class Jeux
     /**
      * @return mixed
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
-     * @param mixed $nom
+     * @param mixed $name
      */
-    public function setNom($nom)
+    public function setName($name)
     {
-        $this->nom = $nom;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAffiche()
-    {
-        return $this->affiche;
-    }
-
-    /**
-     * @param mixed $affiche
-     */
-    public function setAffiche($affiche)
-    {
-        $this->affiche = $affiche;
+        $this->name = $name;
     }
 
     /**
@@ -108,6 +102,22 @@ class Jeux
     public function setSynopsis($synopsis)
     {
         $this->synopsis = $synopsis;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBanner()
+    {
+        return $this->banner;
+    }
+
+    /**
+     * @param mixed $banner
+     */
+    public function setBanner($banner)
+    {
+        $this->banner = $banner;
     }
 
     /**
@@ -145,17 +155,17 @@ class Jeux
     /**
      * @return mixed
      */
-    public function getNumberPlayer()
+    public function getPlayerNumber()
     {
-        return $this->number_player;
+        return $this->player_number;
     }
 
     /**
-     * @param mixed $number_player
+     * @param mixed $player_number
      */
-    public function setNumberPlayer($number_player)
+    public function setPlayerNumber($player_number)
     {
-        $this->number_player = $number_player;
+        $this->player_number = $player_number;
     }
 
 }
