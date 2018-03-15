@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 /**
- * @ORM\Table(name="_match")
  * @ORM\Entity(repositoryClass="App\Repository\MatchRepository")
  */
 class Match
@@ -15,39 +15,48 @@ class Match
      * @ORM\Column(type="integer")
      */
     private $id;
+
     /**
-     * @ORM\Column(type="string")
+     * One Product has One Shipment.
+     * @ORM\OneToOne(targetEntity="Team")
+     * @ORM\JoinColumn(name="team_a_id", referencedColumnName="id")
      */
     protected $teamA;
+
     /**
-     * @ORM\Column(type="string")
+     * One Product has One Shipment.
+     * @ORM\OneToOne(targetEntity="Team")
+     * @ORM\JoinColumn(name="team_b_id", referencedColumnName="id")
      */
     protected $teamB;
+
     /**
      * @ORM\Column(type="datetime")
      */
     protected $date;
+
     /**
      * @ORM\Column(type="string")
      */
     protected $score;
-<<<<<<< Updated upstream
-}
-=======
+
     /**
      * Many match for a game
      * @ORM\ManyToOne(targetEntity="Game", inversedBy="matches")
      * @ORM\JoinColumn(nullable=false, name="game", referencedColumnName="id")
      */
     protected $game;
+
     /**
      * @ORM\Column(type="datetime")
      */
     protected $created;
+
     /**
      * @ORM\Column(type="datetime")
      */
     protected $updated;
+
     /**
      * @return mixed
      */
@@ -55,6 +64,7 @@ class Match
     {
         return $this->id;
     }
+
     /**
      * @param mixed $id
      */
@@ -62,6 +72,7 @@ class Match
     {
         $this->id = $id;
     }
+
     /**
      * @return mixed
      */
@@ -69,6 +80,7 @@ class Match
     {
         return $this->teamA;
     }
+
     /**
      * @param mixed $teamA
      */
@@ -76,6 +88,7 @@ class Match
     {
         $this->teamA = $teamA;
     }
+
     /**
      * @return mixed
      */
@@ -83,6 +96,7 @@ class Match
     {
         return $this->teamB;
     }
+
     /**
      * @param mixed $teamB
      */
@@ -90,6 +104,7 @@ class Match
     {
         $this->teamB = $teamB;
     }
+
     /**
      * @return mixed
      */
@@ -97,6 +112,7 @@ class Match
     {
         return $this->date;
     }
+
     /**
      * @param mixed $date
      */
@@ -104,6 +120,7 @@ class Match
     {
         $this->date = $date;
     }
+
     /**
      * @return mixed
      */
@@ -111,6 +128,7 @@ class Match
     {
         return $this->score;
     }
+
     /**
      * @param mixed $score
      */
@@ -119,4 +137,3 @@ class Match
         $this->score = $score;
     }
 }
->>>>>>> Stashed changes
