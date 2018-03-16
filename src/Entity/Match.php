@@ -141,6 +141,22 @@ class Match
     /**
      * @return mixed
      */
+    public function getGame()
+    {
+        return $this->game;
+    }
+
+    /**
+     * @param mixed $game
+     */
+    public function setGame($game)
+    {
+        $this->game = $game;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getCreated()
     {
         return $this->created;
@@ -170,19 +186,8 @@ class Match
         $this->updated = $updated;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getGame()
+    public function __toString()
     {
-        return $this->game;
-    }
-
-    /**
-     * @param mixed $game
-     */
-    public function setGame($game)
-    {
-        $this->game = $game;
+        return $this->teamA . ' ' . $this->teamB . ' ' . $this->date->format('d-m-Y');
     }
 }

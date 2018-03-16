@@ -20,10 +20,14 @@ class GameFixtures extends Fixture implements OrderedFixtureInterface
             $game->setSynopsis("Synopsis n" . $i);
             $game->setRules("Rules n" . $i);
             $game->setReleaseDate(new \DateTime());
+
             $game->setPlayerNumber(5);
 
             //Create a reference of $game for other tables
             $this->setReference('game_' . $i, $game);
+
+            $game->setSlug("jeu-n" . $i);
+
 
             $manager->persist($game);
             $i++;

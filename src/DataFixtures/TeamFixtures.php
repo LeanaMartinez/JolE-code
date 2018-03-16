@@ -21,6 +21,7 @@ class TeamFixtures extends Fixture implements OrderedFixtureInterface
             /*logo*/
             $team->setDivision("Division n" . $i);
             $team->setCountry("Country n" . $i);
+            $team->setSlug("team-n" . $i);
 
             //Create a reference of $team for other tables
             $this->setReference('team_' . $i, $team);

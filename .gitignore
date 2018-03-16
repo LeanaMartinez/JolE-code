@@ -1,4 +1,3 @@
-
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/
@@ -14,4 +13,5 @@
 .phpunit
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
 .idea/
