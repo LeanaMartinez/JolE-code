@@ -18,6 +18,7 @@ class GameFixtures extends Fixture
             $game->setSynopsis("Synopsis n" . $i);
             $game->setRules("Rules n" . $i);
             $game->setReleaseDate(new \DateTime());
+            $game->setSlug("jeu-n" . $i);
 
             $this->addReference('game_' . $i, $game);
             $manager->persist($game);
