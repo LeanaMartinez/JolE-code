@@ -178,6 +178,7 @@ class Game
     /**
      * @return mixed
      */
+
     public function getTeams()
     {
         return $this->teams;
@@ -206,8 +207,7 @@ class Game
     {
         $this->match = $match;
     }
-
-
+  
     public function __toString()
     {
         return $this->name;
