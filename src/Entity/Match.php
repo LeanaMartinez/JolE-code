@@ -37,7 +37,7 @@ class Match
     protected $date;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $score;
 
@@ -49,12 +49,12 @@ class Match
     protected $game;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $created;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $updated;
 
@@ -136,5 +136,53 @@ class Match
     public function setScore($score)
     {
         $this->score = $score;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param mixed $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param mixed $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGame()
+    {
+        return $this->game;
+    }
+
+    /**
+     * @param mixed $game
+     */
+    public function setGame($game)
+    {
+        $this->game = $game;
     }
 }

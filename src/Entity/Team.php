@@ -138,7 +138,4 @@ class Team
     {
         $this->game = $game;
     }
-
-
-
 }

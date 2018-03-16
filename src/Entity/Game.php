@@ -206,6 +206,4 @@ class Game
     {
         $this->match = $match;
     }
-
-
 }

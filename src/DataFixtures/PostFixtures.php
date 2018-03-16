@@ -4,9 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\Post;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class PostFixtures extends Fixture
+class PostFixtures extends Fixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
