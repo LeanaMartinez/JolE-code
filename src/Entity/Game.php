@@ -185,6 +185,7 @@ class Game
     /**
      * @return mixed
      */
+
     public function getTeams()
     {
         return $this->teams;
@@ -228,5 +229,10 @@ class Game
     public function setSlug($slug)
     {
         $this->slug = $slug;
+    }
+  
+    public function __toString()
+    {
+        return $this->name;
     }
 }
