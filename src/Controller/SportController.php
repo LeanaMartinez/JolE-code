@@ -16,5 +16,6 @@ class SportController extends Controller
             'controller_name' => 'SportController',
         ]);
     }
+
 }
 
