@@ -18,6 +18,7 @@ class TeamFixtures extends Fixture
             $team->setGame($this->getReference('game_1'));
             $team->setDivision("Division n" . $i);
             $team->setCountry("Country n" . $i);
+            $team->setSlug("team-n" . $i);
 
             $manager->persist($team);
             $i++;
