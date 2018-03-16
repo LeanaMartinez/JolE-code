@@ -22,7 +22,7 @@ class GameController extends Controller
     /**
      * @Route("/game/{game_slug}", name="game_name")
      */
-    public function game_sheet(GameRepository $gameRepository, $game_slug)
+    public function gameSheet(GameRepository $gameRepository, $game_slug)
     {
         $game = $gameRepository->findOneBy(array('slug' => $game_slug));
 
