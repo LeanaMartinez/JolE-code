@@ -22,7 +22,7 @@ class Post
     protected $title;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      */
     protected $body;
 
@@ -35,6 +35,22 @@ class Post
      * @ORM\Column(type="datetime")
      */
     protected $updated;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     /**
      * @return mixed
@@ -99,6 +115,4 @@ class Post
     {
         $this->updated = $updated;
     }
-
-
 }
