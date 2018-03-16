@@ -22,7 +22,7 @@ class TeamController extends Controller
     /**
      * @Route("/team/{team_slug}", name="team_name")
      */
-    public function team_sheet(TeamRepository $teamRepository, $team_slug)
+    public function teamSheet(TeamRepository $teamRepository, $team_slug)
     {
         $team = $teamRepository->findOneBy(array('slug' => $team_slug));
 
