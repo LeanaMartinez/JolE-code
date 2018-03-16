@@ -139,6 +139,8 @@ class Team
         $this->game = $game;
     }
 
-
-
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

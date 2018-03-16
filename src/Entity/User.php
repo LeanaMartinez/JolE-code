@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="user")
+ * @ORM\Table(name="_user")
  */
 class User implements UserInterface
 {
@@ -26,30 +26,25 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", unique=true)
      */
-    protected $apiKey;
-
-    /**
-     * @ORM\Column(type="string", unique=true)
-     */
     protected $password;
 
     /**
      * @ORM\ManyToMany(targetEntity="Team")
-     * @ORM\JoinTable(name="fav_team",
+     * @ORM\JoinTable(name="favTeam",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="team_id", referencedColumnName="id")}
      *      )
      */
-    protected $fav_team;
+    protected $favTeam;
 
     /**
      * @ORM\ManyToMany(targetEntity="Team")
-     * @ORM\JoinTable(name="fav_game",
+     * @ORM\JoinTable(name="favGame",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="game_id", referencedColumnName="id")}
      *      )
      */
-    protected $fav_game;
+    protected $favGame;
 
     /**
      * @return mixed
@@ -67,26 +62,19 @@ class User implements UserInterface
         $this->id = $id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getApiKey()
-    {
-        return $this->apiKey;
-    }
-
-    /**
-     * @param mixed $apiKey
-     */
-    public function setApiKey($apiKey)
-    {
-        $this->apiKey = $apiKey;
-    }
-
     public function getUsername()
     {
         return $this->username;
     }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
 
     public function getRoles()
     {
@@ -96,6 +84,15 @@ class User implements UserInterface
     public function getPassword()
     {
     }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
     public function getSalt()
     {
     }
@@ -108,15 +105,15 @@ class User implements UserInterface
      */
     public function getFavTeam()
     {
-        return $this->fav_team;
+        return $this->favTeam;
     }
 
     /**
-     * @param mixed $fav_team
+     * @param mixed $favTeam
      */
-    public function setFavTeam($fav_team)
+    public function setFavTeam($favTeam)
     {
-        $this->fav_team = $fav_team;
+        $this->favTeam = $favTeam;
     }
 
     /**
@@ -124,15 +121,14 @@ class User implements UserInterface
      */
     public function getFavGame()
     {
-        return $this->fav_game;
+        return $this->favGame;
     }
 
     /**
-     * @param mixed $fav_game
+     * @param mixed $favGame
      */
-    public function setFavGame($fav_game)
+    public function setFavGame($favGame)
     {
-        $this->fav_game = $fav_game;
+        $this->favGame = $favGame;
     }
-
 }
