@@ -2,9 +2,46 @@
 {% block layout_content %}
     <h1>HOME</h1>
     {{ dump(match) }}
+    <table>
+        {% for matchs in match %}
+            <tr>
+                    <td>
+                        <span style="color: #AA3333">{{ matchs.game }}</span>
+                    </td>
+                    <td>
+                        <span style="color: #5eb5e0">{{ matchs.teamA }}</span>
+                    </td>
+                    <td>
+                        <span style="color: #3c763d">{{ matchs.score }}</span>
+                    </td>
+                    <td>
+                        <span style="color: #5eb5e0">{{ matchs.teamB }}</span>
+                    </td>
+                    <td>
+                        <span style="color: #5eb5e0">{{ matchs.date|date("d/m/Y") }}</span>
+
+                    </td>
+            </tr>
+        {% endfor %}
+    </table>
     <div>
         <h2>PARTIE BLOG</h2>
     </div>
 
     {{ dump(post) }}
+    <table>
+        {% for posts in post %}
+            <tr>
+                <td>
+                    <span style="color: #AA3333">{{ posts.title }}</span>
+                </td>
+                <td>
+                    <span style="color: #AA3333">{{ posts.body }}</span>
+                </td>
+                <td>
+                    <span style="color: #AA3333">{{ posts.created|date("d/m/Y") }}</span>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
