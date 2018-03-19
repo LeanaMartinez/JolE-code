@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="_match")
  * @ORM\Entity(repositoryClass="App\Repository\MatchRepository")
  */
 class Match
@@ -36,7 +37,7 @@ class Match
     protected $date;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $score;
 
@@ -48,12 +49,12 @@ class Match
     protected $game;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $created;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $updated;
 
@@ -135,5 +136,58 @@ class Match
     public function setScore($score)
     {
         $this->score = $score;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGame()
+    {
+        return $this->game;
+    }
+
+    /**
+     * @param mixed $game
+     */
+    public function setGame($game)
+    {
+        $this->game = $game;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param mixed $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param mixed $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+    }
+
+    public function __toString()
+    {
+        return $this->teamA . ' ' . $this->teamB . ' ' . $this->date->format('d-m-Y');
     }
 }
