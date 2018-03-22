@@ -2,4 +2,12 @@
 {% block layout_content %}
     <h1>TEAM</h1>
     <h2>{{ dump(team) }}</h2>
+    <p class="lead">{{ team.name }}</p>
+    <p class="lead">{{ team.logo }}</p>
+    <p class="lead">Pays: {{ team.country }}</p>
+    <p class="lead">Equipes jouant au jeu: {{ team.game }}</p>
+    <p class="lead">Division: {{ team.division }}</p>
+    <div>
+        <h2>PARTIE BLOG</h2>
+    </div>
 {% endblock %}

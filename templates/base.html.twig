@@ -3,11 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        {% endblock %}
     </head>
     <body>
         {% block javascripts %}{% endblock %}
-        <div id="wrapper">
+        <div class="container">
             {% block header_content %}
                 {% include "header.html.twig" %}
             {% endblock %}
