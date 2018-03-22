@@ -32,10 +32,12 @@ class PostController extends Controller
     /**
      * @Route("/allPost", name="allPost")
      */
-    public function allPost()
+    public function allPost(PostRepository $postRepository)
     {
-        return $this->render('Content/team.html.twig', [
-            'controller_name' => 'PostController',
+        $post = $postRepository->findAll();
+
+        return $this->render('Content/allPost.html.twig', [
+            'post' => $post
         ]);
     }
 
