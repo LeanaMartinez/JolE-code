@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TeamRepository")
+ * @Vich\Uploadable
  */
 class Team
 {
@@ -22,9 +25,16 @@ class Team
     protected $name;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", length=255)
+     * @var string
      */
-    protected $logo;
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="team_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string")
@@ -75,20 +85,24 @@ class Team
         $this->name = $name;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLogo()
+    public function setImageFile(File $image = null)
     {
-        return $this->logo;
+        $this->imageFile = $image;
     }
 
-    /**
-     * @param mixed $logo
-     */
-    public function setLogo($logo)
+    public function getImageFile()
     {
-        $this->logo = $logo;
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
@@ -143,4 +157,6 @@ class Team
     {
         return $this->name;
     }
+
+
 }
