@@ -8,18 +8,18 @@ vich_uploader:
     db_driver: orm
 
     mappings:
-        Game:
+        game_images:
             uri_prefix: '%app.path.game_images%'
             upload_destination: '%kernel.root_dir%/../web/uploads/images/game'
 
-        Post:
+        post_images:
             uri_prefix: '%app.path.post_images%'
             upload_destination: '%kernel.root_dir%/../web/uploads/images/post'
 
-        Team:
+        team_images:
             uri_prefix: '%app.path.team_images%'
             upload_destination: '%kernel.root_dir%/../web/uploads/images/team'
 
-        User:
+        user_images:
             uri_prefix: '%app.path.user_images%'
             upload_destination: '%kernel.root_dir%/../web/uploads/images/user'
