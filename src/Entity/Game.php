@@ -5,11 +5,11 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GameRepository")
- * @ORM\Entity
  * @Vich\Uploadable
  */
 class Game
@@ -128,36 +128,24 @@ class Game
         $this->synopsis = $synopsis;
     }
 
-    /**
-     * @return string
-     */
-    public function getImage(): string
+    public function setImageFile(File $image = null)
     {
-        return $this->image;
+        $this->imageFile = $image;
     }
 
-    /**
-     * @param string $image
-     */
-    public function setImage(string $image)
-    {
-        $this->image = $image;
-    }
-
-    /**
-     * @return File
-     */
-    public function getImageFile(): File
+    public function getImageFile()
     {
         return $this->imageFile;
     }
 
-    /**
-     * @param File $imageFile
-     */
-    public function setImageFile(File $imageFile)
+    public function setImage($image)
     {
-        $this->imageFile = $imageFile;
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
@@ -256,7 +244,7 @@ class Game
     {
         $this->slug = $slug;
     }
-  
+
     public function __toString()
     {
         return $this->name;
