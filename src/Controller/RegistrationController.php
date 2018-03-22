@@ -41,7 +41,7 @@ class RegistrationController extends Controller
 // ... do any other work - like sending them an email, etc
             $message = (new \Swift_Message('Confirmation de compte'))
                 ->setFrom(['jolesport.iesa@gmail.com' => 'JolE-sport'])
-                ->setTo('jolesport.iesa@gmail.com')
+                ->setTo($user->getEmail())
                 ->setBody('Votre compte JolE-sport a bien été créé !');
 
             $mailer->send($message);
