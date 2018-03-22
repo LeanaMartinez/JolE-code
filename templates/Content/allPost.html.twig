@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+{% block layout_content %}
+    {% for posts in post %}
+        <tr>
+            <td>
+                <h1>{{ posts.title }}</h1>
+            </td>
+            <td>
+                <h2>Créé le {{ posts.created|date("d/m/Y") }}</h2>
+            </td>
+            <td>
+                <div>{{ posts.body }}</div>
+            </td>
+            <td>
+                <span>Modifié le {{ posts.updated|date("d/m/Y")}}</span>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}
