@@ -44,20 +44,12 @@ class User implements UserInterface
     protected $username;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Team")
-     * @ORM\JoinTable(name="favTeam",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="team_id", referencedColumnName="id")}
-     *      )
+     * @ORM\Column(type="array")
      */
     protected $favTeam;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Team")
-     * @ORM\JoinTable(name="favGame",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="game_id", referencedColumnName="id")}
-     *      )
+     * @ORM\Column(type="array")
      */
     protected $favGame;
 
