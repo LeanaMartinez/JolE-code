@@ -1,0 +1,30 @@
+parameters:
+    app.path.game_images: /uploads/images/game
+    app.path.match_images: /uploads/images/match
+    app.path.post_images: /uploads/images/post
+    app.path.team_images: /uploads/images/team
+    app.path.user_images: /uploads/images/user
+
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        Game:
+            uri_prefix: /images/game
+            upload_destination: '%kernel.project_dir%/public/images/game_images'
+
+        Match:
+            uri_prefix: /images/match
+            upload_destination: '%kernel.project_dir%/public/images/match_images'
+
+        Post:
+            uri_prefix: /images/post
+            upload_destination: '%kernel.project_dir%/public/images/post_images'
+
+        Team:
+            uri_prefix: /images/team
+            upload_destination: '%kernel.project_dir%/public/images/team_images'
+
+        User:
+            uri_prefix: /images/user
+            upload_destination: '%kernel.project_dir%/public/images/user_images'

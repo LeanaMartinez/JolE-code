@@ -1,8 +1,46 @@
 easy_admin:
     entities:
-        # List the entity class name you want to manage
-        - App\Entity\Admin
-        - App\Entity\Game
-        - App\Entity\Match
-        - App\Entity\Team
-        - App\Entity\User
+        Game:
+            class: App\Entity\Game
+            list:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.game_images%' }
+            show:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.game_images%' }
+
+        Match:
+            class: App\Entity\Match
+            list:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.match_images%' }
+            show:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.match_images%' }
+
+        Post:
+            class: App\Entity\Post
+            list:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.post_images%' }
+            show:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.post_images%' }
+
+        Team:
+            class: App\Entity\Team
+            list:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.team_images%' }
+            show:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.team_images%' }
+
+        User:
+            class: App\Entity\User
+            list:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.user_images%' }
+            show:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.user_images%' }
