@@ -15,7 +15,7 @@ class GameFixtures extends Fixture implements OrderedFixtureInterface
         //Set test values in the table "Game" for 4 games
         while ($i <= 4){
             $game = new Game();
-            $game->setName("Jeu n" . $i);
+            $game->setName("Game n" . $i);
             /*banner*/
             $game->setSynopsis("Synopsis n" . $i);
             $game->setRules("Rules n" . $i);
@@ -26,7 +26,7 @@ class GameFixtures extends Fixture implements OrderedFixtureInterface
             //Create a reference of $game for other tables
             $this->setReference('game_' . $i, $game);
 
-            $game->setSlug("jeu-n" . $i);
+            $game->setSlug("game-n" . $i);
 
 
             $manager->persist($game);
