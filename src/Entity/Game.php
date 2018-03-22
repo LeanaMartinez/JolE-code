@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GameRepository")
+ * @ORM\Entity
+ * @Vich\Uploadable
  */
 class Game
 {
@@ -23,9 +27,16 @@ class Game
     protected $name;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", length=255)
+     * @var string
      */
-    protected $banner;
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="game_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="text")
@@ -56,6 +67,12 @@ class Game
      * @ORM\OneToMany(targetEntity="Match", mappedBy="game", cascade={"all"}, fetch="LAZY")
      */
     protected $match;
+
+    /** *
+     * @Gedmo\Slug(fields={"name"}, updatable=false, separator="-")
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
 
     public function __construct()
     {
@@ -112,19 +129,35 @@ class Game
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getBanner()
+    public function getImage(): string
     {
-        return $this->banner;
+        return $this->image;
     }
 
     /**
-     * @param mixed $banner
+     * @param string $image
      */
-    public function setBanner($banner)
+    public function setImage(string $image)
     {
-        $this->banner = $banner;
+        $this->image = $image;
+    }
+
+    /**
+     * @return File
+     */
+    public function getImageFile(): File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File $imageFile
+     */
+    public function setImageFile(File $imageFile)
+    {
+        $this->imageFile = $imageFile;
     }
 
     /**
@@ -206,6 +239,22 @@ class Game
     public function setMatch($match)
     {
         $this->match = $match;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
   
     public function __toString()
