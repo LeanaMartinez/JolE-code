@@ -24,7 +24,7 @@ $form = $this->createForm(UserType::class, $user);
 $form->handleRequest($request);
 if ($form->isSubmitted() && $form->isValid()) {
 
-// 3) Encode the password (you could also do this via Doctrine listener)
+// 3) Encode the password (you could also do this via Doctrine listener
 $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
 $user->setPassword($password);
 
