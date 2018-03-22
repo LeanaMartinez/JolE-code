@@ -19,6 +19,7 @@ class PostFixtures extends Fixture implements OrderedFixtureInterface
             $post->setBody("Body n" . $i);
             $post->setCreated(new \DateTime());
             $post->setUpdated(new \DateTime());
+            $post->setSlug("titre-n" . $i);
 
             $manager->persist($post);
             $i++;

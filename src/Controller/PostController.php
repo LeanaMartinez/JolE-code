@@ -8,16 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class PostController extends Controller
 {
     /**
-     * @Route("/home", name="blog")
-     */
-    public function postHome()
-    {
-        return $this->render('Content/home.html.twig', [
-            'controller_name' => 'PostController',
-        ]);
-    }
-
-    /**
      * @Route("/game", name="blog")
      */
     public function postGame()

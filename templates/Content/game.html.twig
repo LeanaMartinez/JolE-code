@@ -2,8 +2,13 @@
 {% block layout_content %}
     <h1>GAME</h1>
     <h2>{{ dump(game) }}</h2>
-
     <div>
-        <h2>PARTIE BLOG</h2>
+        <p style="text-align: center; color: #AA3333">{{ game.name }}</p>
+        <p style="text-align: center">{{ game.banner }}</p>
+        <p style="text-align: center">Date de sortie: {{ game.releaseDate|date('Y') }}</p>
+        <p style="text-align: center">Resumé du jeu: {{ game.synopsis }}</p>
+        <p style="text-align: center">Règle du jeu: {{ game.rules }}</p>
+        <p style="text-align: center">Nombre de joueur: {{ game.playerNumber }}</p>
     </div>
+    <h2>PARTIE BLOG</h2>
 {% endblock %}
