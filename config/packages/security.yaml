@@ -26,3 +26,5 @@ security:
         #Activation role admin, ne marche pas encore
         #- { path: ^/admin, roles: ROLE_ADMIN }
 
+    role_hierarchy:
+        ROLE_ADMIN:  ROLE_USER
