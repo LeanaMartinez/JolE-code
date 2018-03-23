@@ -1,10 +1,15 @@
 <?php
 namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * @ORM\Entity
+ * @ORM\Table(name="_user")
+ * @Vich\Uploadable
  */
 class User implements UserInterface
 {
@@ -14,6 +19,24 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="user_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updatedAt;
+
     /**
      * @ORM\Column(type="string", unique=true)
      */
@@ -34,19 +57,11 @@ class User implements UserInterface
     private $isActive;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Team")
-     * @ORM\JoinTable(name="favTeam",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="team_id", referencedColumnName="id")}
-     *      )
+     * @ORM\Column(type="array")
      */
     public $favTeam;
     /**
-     * @ORM\ManyToMany(targetEntity="Team")
-     * @ORM\JoinTable(name="favGame",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="game_id", referencedColumnName="id")}
-     *      )
+     * @ORM\Column(type="array")
      */
     public $favGame;
 
@@ -72,6 +87,31 @@ class User implements UserInterface
     public function getPassword()
     {
         return $this->password;
+    }
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if ($image) {
+
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
     }
 
     public function getUsername()

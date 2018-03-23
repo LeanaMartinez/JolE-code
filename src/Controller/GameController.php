@@ -10,16 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class GameController extends Controller
 {
     /**
-     * @Route("/game", name="game")
-     */
-    public function index()
-    {
-        return $this->render('Content/game.html.twig', [
-            'controller_name' => 'GameController',
-        ]);
-    }
-
-    /**
      * @Route("/game/{game_slug}", name="game_name")
      */
     public function gameSheet(GameRepository $gameRepository, $game_slug)

@@ -1,13 +1,11 @@
 {% extends "base.html.twig" %}
 {% block layout_content %}
-    <h1>TEAM</h1>
-    <h2>{{ dump(team) }}</h2>
-    <p style="text-align: center; color: #5eb5e0">{{ team.name }}</p>
-    <p>{{ team.logo }}</p>
-    <p>Pays: {{ team.country }}</p>
-    <p>Equipes jouant au jeu: {{ team.game }}</p>
-    <p>Division: {{ team.division }}</p>
+    <h1>{{ team.name }}</h1>
+    <p class="lead">{{ team.logo }}</p>
+    <p class="lead">Pays: {{ team.country }}</p>
+    <p class="lead">Jeu: {{ team.game }}</p>
+    <p class="lead">Division: {{ team.division }}</p>
     <div>
         <h2>PARTIE BLOG</h2>
     </div>
-{% endblock %}
+{% endblock   %}
