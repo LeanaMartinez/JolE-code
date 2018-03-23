@@ -56,6 +56,7 @@ class User implements UserInterface
      * @Assert\Length(max=4096)
      */
     private $plainPassword;
+
     /**
      * @ORM\Column(type="array")
      */
