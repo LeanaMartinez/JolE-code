@@ -5,9 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GameRepository")
+ * @Vich\Uploadable
  */
 class Game
 {
@@ -24,9 +27,22 @@ class Game
     protected $name;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", length=255)
+     * @var string
      */
-    protected $banner;
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="game_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updatedAt;
 
     /**
      * @ORM\Column(type="text")
@@ -118,20 +134,30 @@ class Game
         $this->synopsis = $synopsis;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getBanner()
+    public function setImageFile(File $image = null)
     {
-        return $this->banner;
+        $this->imageFile = $image;
+
+        if ($image) {
+
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
-    /**
-     * @param mixed $banner
-     */
-    public function setBanner($banner)
+
+    public function getImageFile()
     {
-        $this->banner = $banner;
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**

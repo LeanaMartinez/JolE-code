@@ -10,16 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class TeamController extends Controller
 {
     /**
-     * @Route("/team", name="team")
-     */
-    public function team()
-    {
-        return $this->render('Content/team.html.twig', [
-            'controller_name' => 'GameController',
-        ]);
-    }
-
-    /**
      * @Route("/team/{team_slug}", name="team_name")
      */
     public function teamSheet(TeamRepository $teamRepository, $team_slug)
