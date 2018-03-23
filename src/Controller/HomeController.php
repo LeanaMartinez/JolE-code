@@ -11,6 +11,9 @@ class HomeController extends Controller
 {
     /**
      * @Route("/", name="home")
+     * @param PostRepository $postRepository
+     * @param MatchRepository $matchRepository
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function homePost(PostRepository $postRepository, MatchRepository $matchRepository)
     {
