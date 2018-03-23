@@ -60,11 +60,11 @@ class User implements UserInterface
     private $roles;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="array", nullable=true)
      */
     public $favTeam;
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="array", nullable=true)
      */
     public $favGame;
 
