@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -137,6 +139,7 @@ class User implements UserInterface
         // see section on salt below
         return null;
     }
+
     /**
      * @return mixed
      */
@@ -152,6 +155,7 @@ class User implements UserInterface
     {
         $this->plainPassword = $plainPassword;
     }
+
     public function getRoles()
     {
         return array('ROLE_USER');

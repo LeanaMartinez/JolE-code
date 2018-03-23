@@ -1,8 +1,8 @@
 parameters:
-    app.path.game_images: /uploads/images/game
-    app.path.post_images: /uploads/images/post
-    app.path.team_images: /uploads/images/team
-    app.path.user_images: /uploads/images/user
+    app.path.game_images: web/uploads/images/game
+    app.path.post_images: web/uploads/images/post
+    app.path.team_images: web/uploads/images/team
+    app.path.user_images: web/uploads/images/user
 
 vich_uploader:
     db_driver: orm
