@@ -25,7 +25,6 @@ easy_admin:
             form:
                 fields:
                     - { property: 'imageFile', type: 'file' }
-                    - { property: 'id'}
                     - { property: 'name' }
                     - { property: 'synopsis' }
                     - { property: 'rules' }
@@ -40,6 +39,7 @@ easy_admin:
                     - { property: 'id', type: 'integer' }
                     - { property: 'teamA' }
                     - { property: 'teamB' }
+                    - { property: 'game'}
                     - { property: 'date', type: 'datetime' }
                     - { property: 'score', type: 'string' }
                     - { property: 'created', type: 'datetime' }
@@ -49,15 +49,16 @@ easy_admin:
                     - { property: 'id', type: 'integer' }
                     - { property: 'teamA' }
                     - { property: 'teamB' }
+                    - { property: 'game'}
                     - { property: 'date', type: 'datetime' }
                     - { property: 'score', type: 'string' }
                     - { property: 'created', type: 'datetime' }
                     - { property: 'updated', type: 'datetime' }
             form:
                 fields:
-                    - { property: 'id' }
                     - { property: 'teamA' }
                     - { property: 'teamB' }
+                    - { property: 'game'}
                     - { property: 'date' }
                     - { property: 'score' }
                     - { property: 'created' }
@@ -84,7 +85,6 @@ easy_admin:
             form:
                 fields:
                     - { property: 'imageFile', type: 'file' }
-                    - { property: 'id' }
                     - { property: 'title' }
                     - { property: 'body' }
                     - { property: 'created' }
@@ -111,7 +111,6 @@ easy_admin:
             form:
                 fields:
                     - { property: 'imageFile', type: 'file' }
-                    - { property: 'id' }
                     - { property: 'name' }
                     - { property: 'division' }
                     - { property: 'country' }

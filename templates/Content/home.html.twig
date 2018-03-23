@@ -28,18 +28,21 @@
         <h2>PARTIE BLOG</h2>
     </div>
     <table>
-        {% for posts in post %}
+        {% for post in posts %}
             <div>
-                <a href="blog/{{ posts.slug }}">
+                <a href="blog/{{ post.slug }}">
                     <ul>
                         <li>
-                            <span>{{ posts.title }}</span>
+                            <img src="{{ vich_uploader_asset(post, 'imageFile') }}" />
                         </li>
                         <li>
-                            <span>{{ posts.body }}</span>
+                            <span>{{ post.title }}</span>
                         </li>
                         <li>
-                            <span>{{ posts.created|date("d/m/Y") }}</span>
+                            <span>{{ post.body }}</span>
+                        </li>
+                        <li>
+                            <span>{{ post.created|date("d/m/Y") }}</span>
                         </li>
 
                     </ul>
