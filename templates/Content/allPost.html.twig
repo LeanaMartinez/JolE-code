@@ -1,22 +1,18 @@
 {% extends "base.html.twig" %}
 {% block layout_content %}
     {% for post in posts %}
-        <tr>
-            <td>
-                <h1>{{ post.title }}</h1>
-            </td>
-            <td>
-                <img src="{{ vich_uploader_asset(post, 'imageFile') }}"/>
-            </td>
-            <td>
-                <span>Crée le {{ post.created|date("d/m/Y") }}</span>
-            </td>
-            <td>
-                <div>{{ post.body }}</div>
-            </td>
-            <td>
-                <span>Modifié le {{ post.updated|date("d/m/Y") }}</span>
-            </td>
-        </tr>
+        <div class="card mb-3">
+            <h3 class="card-header">{{ post.title }}</h3>
+            <div class="card-body">
+                <h6 class="card-subtitle text-muted">Crée le {{ post.created|date("d/m/Y") }}</h6>
+            </div>
+            <img style="height: 200px; width: 100%; display: block;" src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="Card image">
+            <div class="card-body">
+                <p class="card-text">{{ post.body }}</p>
+            </div>
+            <div class="card-footer text-muted">
+                Modifié le {{ post.updated|date("d/m/Y") }}
+            </div>
+        </div>
     {% endfor %}
 {% endblock %}
