@@ -31,10 +31,7 @@ class User implements UserInterface
      * @Assert\Length(max=4096)
      */
     private $plainPassword;
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $roles;
+    private $isActive;
 
     /**
      * @ORM\ManyToMany(targetEntity="Team")
@@ -116,12 +113,14 @@ class User implements UserInterface
     {
         return array('ROLE_USER');
     }
-
     public function eraseCredentials()
     {
     }
 
-
+    public function __construct()
+    {
+        $this->isActive = true;
+    }
     /**
      * @return mixed
      */
@@ -138,12 +137,5 @@ class User implements UserInterface
         $this->username = $username;
     }
 
-    /**
-     * @param mixed $roles
-     */
-    public function setRoles($roles)
-    {
-        $this->roles = $roles;
-    }
 
 }
