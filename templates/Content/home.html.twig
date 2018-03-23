@@ -6,7 +6,7 @@
         {% for matchs in match %}
             <tr>
                 <td>
-                    <a href="game/jeu-n1">{{ matchs.game }}</a>
+                    <a href="game/game-n1">{{ matchs.game }}</a>
                 </td>
                 <td>
                     <a href="team/team-n1" style="color: #5eb5e0">{{ matchs.teamA }}</a>
@@ -33,7 +33,7 @@
                 <a href="blog/{{ post.slug }}">
                     <ul>
                         <li>
-                            <img src="{{ vich_uploader_asset(post, 'imageFile') }}" />
+                            <img src="{{ vich_uploader_asset(post, 'imageFile') }}"/>
                         </li>
                         <li>
                             <span>{{ post.title }}</span>
