@@ -191,4 +191,6 @@ class Team
     {
         $this->slug = $slug;
     }
+
+
 }

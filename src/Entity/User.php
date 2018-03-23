@@ -59,9 +59,14 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="array")
      */
+    private $roles;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
     public $favTeam;
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="array", nullable=true)
      */
     public $favGame;
 
@@ -153,14 +158,12 @@ class User implements UserInterface
     {
         return array('ROLE_USER');
     }
+
     public function eraseCredentials()
     {
     }
 
-    public function __construct()
-    {
-        $this->isActive = true;
-    }
+
     /**
      * @return mixed
      */
@@ -177,5 +180,12 @@ class User implements UserInterface
         $this->username = $username;
     }
 
+    /**
+     * @param mixed $roles
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+    }
 
 }
