@@ -19,16 +19,11 @@ class MatchRepository extends ServiceEntityRepository
         parent::__construct($registry, Match::class);
     }
 
-    /*
-    public function findBySomething($value)
+    public function LastMatch($limit = 5)
     {
         return $this->createQueryBuilder('m')
-            ->where('m.something = :value')->setParameter('value', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
+            ->setMaxResults($limit)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
 }

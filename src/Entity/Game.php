@@ -256,7 +256,7 @@ class Game
     {
         $this->slug = $slug;
     }
-
+  
     public function __toString()
     {
         return $this->name;

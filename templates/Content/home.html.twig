@@ -1,4 +1,47 @@
 {% extends "base.html.twig" %}
 {% block layout_content %}
     <h1>HOME</h1>
+    <h2>Match passés</h2>
+    <table>
+        {% for matchs in match %}
+            <tr>
+                    <td>
+                        <a href="game/jeu-n1">{{ matchs.game }}</a>
+                    </td>
+                    <td>
+                        <a href="team/team-n1" style="color: #5eb5e0">{{ matchs.teamA }}</a>
+                    </td>
+                    <td>
+                        <span style="color: #3c763d">{{ matchs.score }}</span>
+                    </td>
+                    <td>
+                        <a href="team/team-n1" style="color: #5eb5e0">{{ matchs.teamB }}</a>
+                    </td>
+                    <td>
+                        <span style="color: #5eb5e0">{{ matchs.date|date("d/m/Y") }}</span>
+
+                    </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <div>
+        <h2>PARTIE BLOG</h2>
+    </div>
+    <table>
+        {% for posts in post %}
+            <ul>
+                <a href="game/{{ posts.slug }}"></a>
+                    <li>
+                        <span style="color: #AA3333">{{ posts.title }}</span>
+                    </li>
+                    <li>
+                        <span style="color: #AA3333">{{ posts.body }}</span>
+                    </li>
+                    <li>
+                        <span style="color: #AA3333">{{ posts.created|date("d/m/Y") }}</span>
+                    </li>
+
+            </ul>
+        {% endfor %}
+    </table>
 {% endblock %}

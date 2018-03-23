@@ -19,16 +19,11 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    /*
-    public function findBySomething($value)
+    public function LastPost($limit = 6)
     {
-        return $this->createQueryBuilder('p')
-            ->where('p.something = :value')->setParameter('value', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+       return $this->createQueryBuilder('p')
+        ->setMaxResults($limit)
+        ->getQuery()
+        ->getResult();
     }
-    */
 }

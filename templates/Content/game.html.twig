@@ -1,4 +1,12 @@
 {% extends "base.html.twig" %}
 {% block layout_content %}
-    <h1>GAME</h1>
+    <h1>{{ game.name }}</h1>
+    <div>
+        <p>{{ game.banner }}</p>
+        <p>Date de sortie: {{ game.releaseDate|date('Y') }}</p>
+        <p>Resumé du jeu: {{ game.synopsis }}</p>
+        <p>Règle du jeu: {{ game.rules }}</p>
+        <p>Nombre de joueur: {{ game.playerNumber }}</p>
+    </div>
+    <h2>PARTIE BLOG</h2>
 {% endblock %}

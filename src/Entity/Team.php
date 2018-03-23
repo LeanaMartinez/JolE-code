@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TeamRepository")
@@ -169,5 +170,25 @@ class Team
         return $this->name;
     }
 
+    /**
+     * @Gedmo\Slug(fields={"name"}, updatable=false, separator="-")
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
 
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
 }

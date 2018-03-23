@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Entity;
-
-use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity
@@ -20,7 +19,6 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
-
     /**
      * @ORM\Column(type="string", length=255)
      * @var string
@@ -42,45 +40,56 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", unique=true)
      */
-    protected $username;
+    private $username;
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Email()
+     */
+    private $email;
+    /**
+     * @ORM\Column(type="string", unique=true, length=64)
+     */
+    private $password;
+    /**
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $roles;
 
     /**
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="array")
      */
-    protected $password;
-
+    public $favTeam;
     /**
-     * @ORM\ManyToMany(targetEntity="Team")
-     * @ORM\JoinTable(name="favTeam",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="team_id", referencedColumnName="id")}
-     *      )
+     * @ORM\Column(type="array")
      */
-    protected $favTeam;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Team")
-     * @ORM\JoinTable(name="favGame",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="game_id", referencedColumnName="id")}
-     *      )
-     */
-    protected $favGame;
+    public $favGame;
 
     /**
      * @return mixed
      */
-    public function getId()
+    public function getEmail()
     {
-        return $this->id;
+        return $this->email;
     }
 
     /**
-     * @param mixed $id
+     * @param mixed $email
      */
-    public function setId($id)
+    public function setEmail($email)
     {
-        $this->id = $id;
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 
     public function setImageFile(File $image = null)
@@ -114,24 +123,6 @@ class User implements UserInterface
     }
 
     /**
-     * @param mixed $username
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-    }
-
-
-    public function getRoles()
-    {
-        return array('ROLE_USER');
-    }
-
-    public function getPassword()
-    {
-    }
-
-    /**
      * @param mixed $password
      */
     public function setPassword($password)
@@ -139,42 +130,60 @@ class User implements UserInterface
         $this->password = $password;
     }
 
+
     public function getSalt()
     {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
     }
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
     public function eraseCredentials()
     {
     }
 
-    /**
-     * @return mixed
-     */
-    public function getFavTeam()
-    {
-        return $this->favTeam;
-    }
-
-    /**
-     * @param mixed $favTeam
-     */
-    public function setFavTeam($favTeam)
-    {
-        $this->favTeam = $favTeam;
-    }
 
     /**
      * @return mixed
      */
-    public function getFavGame()
+    public function getId()
     {
-        return $this->favGame;
+        return $this->id;
     }
 
     /**
-     * @param mixed $favGame
+     * @param mixed $username
      */
-    public function setFavGame($favGame)
+    public function setUsername($username)
     {
-        $this->favGame = $favGame;
+        $this->username = $username;
     }
+
+    /**
+     * @param mixed $roles
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+    }
+
 }

@@ -16,4 +16,5 @@ class ProfileController extends Controller
             'controller_name' => 'GameController',
         ]);
     }
+
 }
