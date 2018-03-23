@@ -10,6 +10,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity
  * @ORM\Table(name="_user")
+ * @Vich\Uploadable
  */
 class User implements UserInterface
 {
@@ -31,6 +32,12 @@ class User implements UserInterface
      * @var File
      */
     private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updatedAt;
 
     /**
      * @ORM\Column(type="string", unique=true)
@@ -79,6 +86,11 @@ class User implements UserInterface
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
+
+        if ($image) {
+
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
     public function getImageFile()

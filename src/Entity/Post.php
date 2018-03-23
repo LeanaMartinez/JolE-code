@@ -37,6 +37,12 @@ class Post
     private $imageFile;
 
     /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
      * @ORM\Column(type="string")
      */
     protected $body;
@@ -70,6 +76,11 @@ class Post
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
+
+        if ($image) {
+
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
     public function getImageFile()
