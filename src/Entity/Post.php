@@ -165,21 +165,6 @@ class Post
     }
 
     /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
      * @Gedmo\Slug(fields={"title"}, updatable=false, separator="-")
      * @ORM\Column(name="slug", type="string", length=255)
      */
