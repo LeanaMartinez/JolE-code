@@ -11,6 +11,9 @@ class GameController extends Controller
 {
     /**
      * @Route("/game/{game_slug}", name="game_name")
+     * @param GameRepository $gameRepository
+     * @param $game_slug
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function gameSheet(GameRepository $gameRepository, $game_slug)
     {
