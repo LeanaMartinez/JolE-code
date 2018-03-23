@@ -326,8 +326,6 @@
     "symfony/stopwatch": {
         "version": "v3.4.6"
     },
-    "symfony/templating": {
-        "version": "v3.4.6"
     "symfony/swiftmailer-bundle": {
         "version": "2.5",
         "recipe": {
@@ -336,6 +334,9 @@
             "version": "2.5",
             "ref": "3db029c03e452b4a23f7fc45cec7c922c2247eb8"
         }
+    },
+    "symfony/templating": {
+        "version": "v3.4.6"
     },
     "symfony/translation": {
         "version": "3.3",
