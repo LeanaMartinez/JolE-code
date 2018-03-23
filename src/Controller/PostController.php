@@ -37,7 +37,7 @@ class PostController extends Controller
         $post = $postRepository->findAll();
 
         return $this->render('Content/allPost.html.twig', [
-            'post' => $post
+            'posts' => $post
         ]);
     }
 
