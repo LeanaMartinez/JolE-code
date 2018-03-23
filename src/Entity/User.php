@@ -54,7 +54,6 @@ class User implements UserInterface
      * @Assert\Length(max=4096)
      */
     private $plainPassword;
-    private $isActive;
 
     /**
      * @ORM\Column(type="array")
