@@ -1,5 +1,8 @@
 {% extends "base.html.twig" %}
 {% block layout_content %}
-    <h1>PROFILE</h1>
-    {{ app.user.username }}
+    <div class="card border-dark mb-3">
+        <div class="card-header">Votre profil</div>
+        <div class="card-title">{{ user.username }}</div>
+        <p class="card-text">{{ user.email }}</p>
+    </div>
 {% endblock %}
