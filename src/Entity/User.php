@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -63,13 +64,53 @@ class User implements UserInterface
     private $roles;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="Team", inversedBy="users")
+     * @ORM\JoinTable(name="users_teams")
      */
-    public $favTeam;
+    private $teams;
+
+    public function addFavTeam(Team $team)
+    {
+        $team->addUser($this); // synchronously updating inverse side
+        $this->teams[] = $team;
+    }
+
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @return \DateTime
      */
-    public $favGame;
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
+
+    /**
+     * @param mixed $teams
+     */
+    public function setTeams($teams)
+    {
+        $this->teams = $teams;
+    }
+
+    public function __construct() {
+        $this->teams = new ArrayCollection();
+    }
 
     /**
      * @return mixed

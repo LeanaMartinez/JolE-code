@@ -4,5 +4,8 @@
         <div class="card-header">Votre profil</div>
         <div class="card-title">{{ app.user.username }}</div>
         <p class="card-text">{{ app.user.email }}</p>
+        {% for user in app.user.teams %}
+            {{user.name}}
+        {% endfor %}
     </div>
 {% endblock %}
