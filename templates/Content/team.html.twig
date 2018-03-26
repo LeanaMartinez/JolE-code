@@ -1,6 +1,7 @@
 {% extends "base.html.twig" %}
 {% block layout_content %}
     <div class="bs-component">
+        <a href="{{ path('add_fav_team', { 'id': team.id}) }}">add fav</a>
         <h1 class="card-header">{{ team.name }}</h1>
         <img src="{{ vich_uploader_asset(team, 'imageFile') }}" style="height: 200px; width: 20%; display: block;">
         <div class="card-body">
