@@ -27,7 +27,7 @@ class Team
     protected $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $image;
@@ -39,7 +39,7 @@ class Team
     private $imageFile;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      * @var \DateTime
      */
     private $updatedAt;
@@ -66,6 +66,12 @@ class Team
      * @ORM\ManyToMany(targetEntity="User", mappedBy="teams")
      */
     private $users;
+
+    /**
+     * @Gedmo\Slug(fields={"name"}, updatable=false, separator="-")
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
 
     /**
      * @return \DateTime
@@ -201,12 +207,6 @@ class Team
     {
         return $this->name;
     }
-
-    /**
-     * @Gedmo\Slug(fields={"name"}, updatable=false, separator="-")
-     * @ORM\Column(name="slug", type="string", length=255)
-     */
-    private $slug;
 
     /**
      * @return mixed
