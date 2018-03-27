@@ -14,10 +14,10 @@
         <tbody>
         {% for matchs in match %}
         <tr class="table-info">
-            <th scope="row"><a href="game/game-n1">{{ matchs.game }}</a></th>
-            <td><a href="team/team-n1">{{ matchs.teamA }}</a></td>
+            <th scope="row"><a href="game/{{ matchs.game.slug }}">{{ matchs.game }}</a></th>
+            <td><a href="team/{{ matchs.teamA.slug }}">{{ matchs.teamA }}</a></td>
             <td>{{ matchs.score }}</td>
-            <td><a href="team/team-n1">{{ matchs.teamB }}</a></td>
+            <td><a href="team/{{ matchs.teamB.slug }}">{{ matchs.teamB }}</a></td>
             <td>{{ matchs.date|date("d/m/Y") }}</td>
         </tr>
         {% endfor %}
