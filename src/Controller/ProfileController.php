@@ -40,5 +40,23 @@ class ProfileController extends Controller
         ]);
        }
 
+    /**
+     * @Route("/deleteFavTeam/{id}", name="remove_fav_team")
+     * @param Request $request
+     * @param Team $team
+     * @param ObjectManager $manager
+     * @return int|string
+     */
+    public function removeFavTeamAction(Request $request, Team $team, ObjectManager $manager) {
+
+            $user = $this->getUser();
+            $user->removeFavTeam($team);
+            $manager->flush();
+
+        return $this->render('Content/profile.html.twig', [
+            'controller_name' => 'GameController',
+        ]);
+    }
+
 
 }
