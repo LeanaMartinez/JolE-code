@@ -76,6 +76,14 @@ class User implements UserInterface
         $this->teams[] = $team;
     }
 
+    public function removeFavTeam(Team $team)
+    {
+        if (!$this->teams->contains($team)) {
+            return;
+        }
+        $this->teams->removeElement($team);
+    }
+
     /**
      * @return \DateTime
      */
