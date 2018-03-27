@@ -10,15 +10,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class HomeController extends Controller
 {
     /**
-     * @Route("/home", name="home")
+     * @Route("/", name="home")
+     * @param PostRepository $postRepository
+     * @param MatchRepository $matchRepository
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function homePost(PostRepository $postRepository, MatchRepository $matchRepository)
     {
-        $post = $postRepository->LastPost();
+        $posts = $postRepository->LastPost();
         $match = $matchRepository->LastMatch();
 
         return $this->render('Content/home.html.twig', [
-            'post' => $post,
+            'posts' => $posts,
             'match' => $match
         ]);
     }

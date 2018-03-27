@@ -2,14 +2,19 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity
+ * @ORM\Table(name="_user")
+ * @Vich\Uploadable
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -17,49 +22,140 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $image;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\NotBlank()
-     * @Assert\Email()
+     * @Vich\UploadableField(mapping="user_images", fileNameProperty="image")
+     * @var File
      */
-    private $email;
+    private $imageFile;
 
     /**
-     * @ORM\Column(type="string", unique=true, length=64)
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime
      */
-    private $password;
-
-    /**
-     * @Assert\NotBlank()
-     * @Assert\Length(max=4096)
-     */
-    private $plainPassword;
-
-
+    private $updatedAt;
 
     /**
      * @ORM\Column(type="string", unique=true)
      */
-    protected $username;
+    private $username;
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Email()
+     */
+    private $email;
+    /**
+     * @ORM\Column(type="string", unique=true, length=64)
+     */
+    private $password;
+    /**
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Team")
-     * @ORM\JoinTable(name="favTeam",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="team_id", referencedColumnName="id")}
-     *      )
+     * @ORM\Column(type="array")
      */
-    protected $favTeam;
+    private $roles;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Team")
-     * @ORM\JoinTable(name="favGame",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="game_id", referencedColumnName="id")}
-     *      )
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="Team", inversedBy="users")
+     * @ORM\JoinTable(name="users_teams")
      */
-    protected $favGame;
+    private $teams;
+
+    public function addFavTeam(Team $team)
+    {
+        $team->addUser($this); // synchronously updating inverse side
+        $this->teams[] = $team;
+    }
+
+    public function removeFavTeam(Team $team)
+    {
+        if (!$this->teams->contains($team)) {
+            return;
+        }
+        $this->teams->removeElement($team);
+    }
+
+    /**
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="Game", inversedBy="users")
+     * @ORM\JoinTable(name="users_games")
+     */
+    private $games;
+
+    /**
+     * @return mixed
+     */
+    public function getGames()
+    {
+        return $this->games;
+    }
+
+    /**
+     * @param mixed $games
+     */
+    public function setGames($games)
+    {
+        $this->games = $games;
+    }
+
+    public function addFavGame(Game $game)
+    {
+        $game->addUser($this); // synchronously updating inverse side
+        $this->games[] = $game;
+    }
+
+    public function removeFavGame(Game $game)
+    {
+        if (!$this->games->contains($game)) {
+            return;
+        }
+        $this->games->removeElement($game);
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
+
+    /**
+     * @param mixed $teams
+     */
+    public function setTeams($teams)
+    {
+        $this->teams = $teams;
+    }
+
+    public function __construct() {
+        $this->teams = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -85,12 +181,50 @@ class User implements UserInterface
         return $this->password;
     }
 
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if ($image) {
+
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
     /**
      * @param mixed $password
      */
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
     }
 
     /**
@@ -109,12 +243,22 @@ class User implements UserInterface
         $this->plainPassword = $plainPassword;
     }
 
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+
     /**
      * @return mixed
      */
-    public function getUsername()
+    public function getId()
     {
-        return $this->username;
+        return $this->id;
     }
 
     /**
@@ -126,91 +270,35 @@ class User implements UserInterface
     }
 
     /**
-     * @return mixed
+     * @param mixed $roles
      */
-    public function getFavTeam()
+    public function setRoles($roles)
     {
-        return $this->favTeam;
+        $this->roles = $roles;
     }
 
-    /**
-     * @param mixed $favTeam
-     */
-    public function setFavTeam($favTeam)
+    /** @see \Serializable::serialize() */
+    public function serialize()
     {
-        $this->favTeam = $favTeam;
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
     }
 
-    /**
-     * @return mixed
-     */
-    public function getFavGame()
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
     {
-        return $this->favGame;
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized);
     }
 
-    /**
-     * @param mixed $favGame
-     */
-    public function setFavGame($favGame)
-    {
-        $this->favGame = $favGame;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    
-
-    public function getSalt()
-    {
-        // The bcrypt and argon2i algorithms don't require a separate salt.
-        // You *may* need a real salt if you choose a different encoder.
-        return null;
-    }
-
-    /**
-     * Returns the roles granted to the user.
-     *
-     * <code>
-     * public function getRoles()
-     * {
-     *     return array('ROLE_USER');
-     * }
-     * </code>
-     *
-     * Alternatively, the roles might be stored on a ``roles`` property,
-     * and populated in any number of different ways when the user object
-     * is created.
-     *
-     * @return (Role|string)[] The user roles
-     */
-    public function getRoles()
-    {
-        // TODO: Implement getRoles() method.
-    }
-
-    /**
-     * Removes sensitive data from the user.
-     *
-     * This is important if, at any given point, sensitive information like
-     * the plain-text password is stored on this object.
-     */
-    public function eraseCredentials()
-    {
-        // TODO: Implement eraseCredentials() method.
-    }
 }

@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TeamRepository")
+ * @Vich\Uploadable
  */
 class Team
 {
@@ -23,9 +27,22 @@ class Team
     protected $name;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
-    protected $logo;
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="team_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime
+     */
+    private $updatedAt;
 
     /**
      * @ORM\Column(type="string")
@@ -43,6 +60,43 @@ class Team
      */
     protected $game;
 
+
+    /**
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="teams")
+     */
+    private $users;
+
+    /**
+     * @Gedmo\Slug(fields={"name"}, updatable=false, separator="-")
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    public function __construct() {
+        $this->users = new ArrayCollection();
+    }
+
+    public function addUser(User $user)
+    {
+        $this->users[] = $user;
+    }
 
     /**
      * @return mixed
@@ -76,20 +130,29 @@ class Team
         $this->name = $name;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLogo()
+    public function setImageFile(File $image = null)
     {
-        return $this->logo;
+        $this->imageFile = $image;
+
+        if ($image) {
+
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
-    /**
-     * @param mixed $logo
-     */
-    public function setLogo($logo)
+    public function getImageFile()
     {
-        $this->logo = $logo;
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
@@ -146,12 +209,6 @@ class Team
     }
 
     /**
-     * @Gedmo\Slug(fields={"name"}, updatable=false, separator="-")
-     * @ORM\Column(name="slug", type="string", length=255)
-     */
-    private $slug;
-
-    /**
      * @return mixed
      */
     public function getSlug()
@@ -166,4 +223,6 @@ class Team
     {
         $this->slug = $slug;
     }
+
+
 }
