@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Game;
 use App\Entity\Team;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,7 +37,7 @@ class ProfileController extends Controller
 
 
         return $this->render('Content/profile.html.twig', [
-            'controller_name' => 'GameController',
+            'controller_name' => 'ProfileController',
         ]);
        }
 
@@ -54,9 +55,48 @@ class ProfileController extends Controller
             $manager->flush();
 
         return $this->render('Content/profile.html.twig', [
-            'controller_name' => 'GameController',
+            'controller_name' => 'ProfileController',
         ]);
     }
+
+    /**
+     * @Route("/favGame/{id}", name="add_fav_game")
+     * @param Request $request
+     * @param Game $game
+     * @param ObjectManager $manager
+     * @return int|string
+     */
+    public function addFavGameAction(Request $request, Game $game, ObjectManager $manager) {
+
+        $user = $this->getUser();
+        $user->addFavGame($game);
+        $manager->persist($user);
+        $manager->flush();
+
+
+        return $this->render('Content/profile.html.twig', [
+            'controller_name' => 'ProfileController',
+        ]);
+    }
+
+    /**
+     * @Route("/deleteFavGame/{id}", name="remove_fav_game")
+     * @param Request $request
+     * @param Game $game
+     * @param ObjectManager $manager
+     * @return int|string
+     */
+    public function removeFavGameAction(Request $request, Game $game, ObjectManager $manager) {
+
+        $user = $this->getUser();
+        $user->removeFavGame($game);
+        $manager->flush();
+
+        return $this->render('Content/profile.html.twig', [
+            'controller_name' => 'ProfileController',
+        ]);
+    }
+
 
 
 }

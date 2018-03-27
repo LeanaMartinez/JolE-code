@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="_user")
  * @Vich\Uploadable
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -82,6 +82,43 @@ class User implements UserInterface
             return;
         }
         $this->teams->removeElement($team);
+    }
+
+    /**
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="Game", inversedBy="users")
+     * @ORM\JoinTable(name="users_games")
+     */
+    private $games;
+
+    /**
+     * @return mixed
+     */
+    public function getGames()
+    {
+        return $this->games;
+    }
+
+    /**
+     * @param mixed $games
+     */
+    public function setGames($games)
+    {
+        $this->games = $games;
+    }
+
+    public function addFavGame(Game $game)
+    {
+        $game->addUser($this); // synchronously updating inverse side
+        $this->games[] = $game;
+    }
+
+    public function removeFavGame(Game $game)
+    {
+        if (!$this->games->contains($game)) {
+            return;
+        }
+        $this->games->removeElement($game);
     }
 
     /**
@@ -238,6 +275,30 @@ class User implements UserInterface
     public function setRoles($roles)
     {
         $this->roles = $roles;
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized);
     }
 
 }

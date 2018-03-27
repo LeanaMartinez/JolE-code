@@ -1,7 +1,13 @@
 {% extends "base.html.twig" %}
 {% block layout_content %}
     <h1>{{ game.name }}</h1>
-    <div>
+    <div class="bs-component">
+        <button type="button" class="btn btn-info">
+            <a href="{{ path('add_fav_game', { 'id': game.id}) }}">Add fav</a>
+        </button>
+        <button type="button" class="btn btn-danger">
+            <a href="{{ path('remove_fav_game', { 'id': game.id}) }}">Delete fav</a>
+        </button>
         <img src="{{ vich_uploader_asset(game, 'imageFile') }}" style="height: 200px; width: 100%; display: block;">
         <p>Date de sortie: {{ game.releaseDate|date('Y') }}</p>
         <p>Resumé du jeu: {{ game.synopsis }}</p>
