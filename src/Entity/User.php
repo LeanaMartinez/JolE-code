@@ -70,6 +70,7 @@ class User implements UserInterface
      */
     private $isAdmin = false;
 
+
     public function __construct()
     {
         $this->isActive = true;
@@ -247,4 +248,6 @@ class User implements UserInterface
     {
         $this->isAdmin = $isAdmin;
     }
+    
+
 }
