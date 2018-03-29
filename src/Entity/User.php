@@ -58,22 +58,23 @@ class User implements UserInterface, \Serializable
      */
     private $plainPassword;
 
-    /**
-     * @ORM\Column(name="is_active", type="boolean")
-     */
-    private $isActive;
 
     /**
      * @ORM\Column(type="boolean")
      */
     private $isAdmin = false;
+    /**
+     * @ORM\Column(name="is_active", type="boolean", nullable=true)
+     */
+    private $isActive;
+    /**
+     * @ORM\Column(type="string", length=128)
+     */
+    private $resetPasswordToken = false;
 
     public function __construct()
     {
         $this->teams = new ArrayCollection();
-        $this->isActive = true;
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid('', true));
     }
 
     /**
@@ -251,6 +252,7 @@ class User implements UserInterface, \Serializable
     {
         $this->plainPassword = $plainPassword;
     }
+    
 
     public function eraseCredentials()
     {
@@ -296,21 +298,6 @@ class User implements UserInterface, \Serializable
         }
         return ['ROLE_USER'];
     }
-    /**
-     * @return mixed
-     */
-    public function getIsActive()
-    {
-        return $this->isActive;
-    }
-
-    /**
-     * @param mixed $isActive
-     */
-    public function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
-    }
 
     /**
      * @return mixed
@@ -339,7 +326,9 @@ class User implements UserInterface, \Serializable
         ));
     }
 
-    /** @see \Serializable::unserialize() */
+    /** @see \Serializable::unserialize()
+     * @param $serialized
+     */
     public function unserialize($serialized)
     {
         list (
@@ -350,5 +339,20 @@ class User implements UserInterface, \Serializable
             // $this->salt
             ) = unserialize($serialized);
     }
+    /**
+     * @return mixed
+     */
+    public function getResetPasswordToken()
+    {
+        return $this->resetPasswordToken;
+    }
+    /**
+     * @param mixed $resetPasswordToken
+     */
+    public function setResetPasswordToken($resetPasswordToken)
+    {
+        $this->resetPasswordToken = $resetPasswordToken;
+    }
+
 
 }

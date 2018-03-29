@@ -10,12 +10,21 @@
         </div>
     </div>
     <div class="bs-component">
-        <button type="button" class="btn btn-info">
-            <a href="{{ path('add_fav_team', { 'id': team.id}) }}">Ajouter aux favoris</a>
-        </button>
-        <button type="button" class="btn btn-danger">
-            <a href="{{ path('remove_fav_team', { 'id': team.id}) }}">Supprimer des favoris</a>
-        </button>
+        {% if app.user %}
+            {% if team.name in app.user.teams %}
+                <button type="button" class="btn btn-danger">
+                    <a href="{{ path('remove_fav_team', { 'id': team.id}) }}">Supprimer des favoris</a>
+                </button>
+            {% else %}
+                <button type="button" class="btn btn-info">
+                    <a href="{{ path('add_fav_team', { 'id': team.id}) }}">Ajouter aux favoris</a>
+                </button>
+            {% endif %}
+        {% else %}
+            <button type="button" class="btn btn-info">
+                <a href="{{ path('profile', {'page': 'profile'}) }}">Ajouter aux favoris</a>
+            </button>
+        {% endif %}
     </div>
     <div>
         <h2>PARTIE BLOG</h2>
