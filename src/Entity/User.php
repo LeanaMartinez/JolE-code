@@ -62,11 +62,6 @@ class User implements UserInterface, \Serializable
      * @var array
      */
     private $roles;
-    /**
-     * @ORM\Column(name="is_active", type="boolean")
-     */
-    private $isActive;
-
 
     /**
      * @ORM\Column(type="boolean")
@@ -264,11 +259,7 @@ class User implements UserInterface, \Serializable
     {
         $this->plainPassword = $plainPassword;
     }
-
-    public function getRoles()
-    {
-        return array('ROLE_USER');
-    }
+    
 
     public function eraseCredentials()
     {
