@@ -59,9 +59,26 @@ class User implements UserInterface, \Serializable
     private $plainPassword;
 
     /**
-     * @ORM\Column(type="array")
+     * @var array
      */
     private $roles;
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isAdmin = false;
+
+    public function __construct()
+    {
+        $this->isActive = true;
+        // may not be needed, see section on salt below
+        // $this->salt = md5(uniqid('', true));
+    }
 
     /**
      * Many Users have Many Groups.
@@ -272,11 +289,57 @@ class User implements UserInterface, \Serializable
     /**
      * @param mixed $roles
      */
-    public function setRoles($roles)
+
+    public function setRoles(File $roles = null)
     {
-        $this->roles = $roles;
+        $this->imageFile = $roles;
+
+        if ($roles) {
+
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+/**
+* @return (Role|string)[] The user roles
+*/
+    public function getRoles()
+    {
+        if ($this->getisAdmin()) {
+            return ['ROLE_ADMIN'];
+        }
+        return ['ROLE_USER'];
+    }
+    /**
+     * @return mixed
+     */
+    public function getisActive()
+    {
+        return $this->isActive;
     }
 
+    /**
+     * @param mixed $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getisAdmin()
+    {
+        return $this->isAdmin;
+    }
+
+    /**
+     * @param mixed $isAdmin
+     */
+    public function setIsAdmin($isAdmin)
+    {
+        $this->isAdmin = $isAdmin;
+    }
     /** @see \Serializable::serialize() */
     public function serialize()
     {
