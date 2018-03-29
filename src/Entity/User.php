@@ -70,6 +70,7 @@ class User implements UserInterface
      */
     private $isAdmin = false;
 
+
     public function __construct()
     {
         $this->isActive = true;
@@ -78,98 +79,13 @@ class User implements UserInterface
     }
 
     /**
-     * Many Users have Many Groups.
-     * @ORM\ManyToMany(targetEntity="Team", inversedBy="users")
-     * @ORM\JoinTable(name="users_teams")
+     * @ORM\Column(type="array", nullable=true)
      */
-    private $teams;
-
-    public function addFavTeam(Team $team)
-    {
-        $team->addUser($this); // synchronously updating inverse side
-        $this->teams[] = $team;
-    }
-
-    public function removeFavTeam(Team $team)
-    {
-        if (!$this->teams->contains($team)) {
-            return;
-        }
-        $this->teams->removeElement($team);
-    }
-
+    public $favTeam;
     /**
-     * Many Users have Many Groups.
-     * @ORM\ManyToMany(targetEntity="Game", inversedBy="users")
-     * @ORM\JoinTable(name="users_games")
+     * @ORM\Column(type="array", nullable=true)
      */
-    private $games;
-
-    /**
-     * @return mixed
-     */
-    public function getGames()
-    {
-        return $this->games;
-    }
-
-    /**
-     * @param mixed $games
-     */
-    public function setGames($games)
-    {
-        $this->games = $games;
-    }
-
-    public function addFavGame(Game $game)
-    {
-        $game->addUser($this); // synchronously updating inverse side
-        $this->games[] = $game;
-    }
-
-    public function removeFavGame(Game $game)
-    {
-        if (!$this->games->contains($game)) {
-            return;
-        }
-        $this->games->removeElement($game);
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @param \DateTime $updatedAt
-     */
-    public function setUpdatedAt(\DateTime $updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTeams()
-    {
-        return $this->teams;
-    }
-
-    /**
-     * @param mixed $teams
-     */
-    public function setTeams($teams)
-    {
-        $this->teams = $teams;
-    }
-
-    public function __construct() {
-        $this->teams = new ArrayCollection();
-    }
+    public $favGame;
 
     /**
      * @return mixed
@@ -332,4 +248,6 @@ class User implements UserInterface
     {
         $this->isAdmin = $isAdmin;
     }
+    
+
 }
