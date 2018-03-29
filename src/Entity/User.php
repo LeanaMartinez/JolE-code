@@ -75,6 +75,7 @@ class User implements UserInterface, \Serializable
 
     public function __construct()
     {
+        $this->teams = new ArrayCollection();
         $this->isActive = true;
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
@@ -170,10 +171,6 @@ class User implements UserInterface, \Serializable
         $this->teams = $teams;
     }
 
-    public function __construct() {
-        $this->teams = new ArrayCollection();
-    }
-
     /**
      * @return mixed
      */
@@ -258,11 +255,6 @@ class User implements UserInterface, \Serializable
     public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
-    }
-
-    public function getRoles()
-    {
-        return array('ROLE_USER');
     }
 
     public function eraseCredentials()
