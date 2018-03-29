@@ -12,7 +12,7 @@
         {% else %}
             {% for userteam in app.user.teams %}
                 <p class="card-text">
-                    {{ userteam.name }}
+                    <a href="team/{{ userteam.slug }}">{{ userteam.name }}</a>
                 </p>
             {% endfor %}
         {% endif %}
@@ -24,7 +24,7 @@
         {% else %}
             {% for usergame in app.user.games %}
                 <p class="card-text">
-                    {{ usergame.name }}
+                    <a href="game/{{ usergame.slug }}">{{ usergame.name }}</a>
                 </p>
             {% endfor %}
         {% endif %}
