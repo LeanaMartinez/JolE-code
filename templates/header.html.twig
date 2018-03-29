@@ -19,6 +19,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('allPost', {'page': 'allPost'}) }}">Blog</a>
                 </li>
+                {% if app.user %}
+                <button type="button" class="btn btn-danger">
+                    <a href="{{ path('logout', {'page': 'logout'}) }}">Déconnexion</a></button>
+                {% else %}
+                <button type="button"  class="btn btn-success">
+                    <a href="{{ path('login', {'page': 'login'}) }}">Connexion</a></button>
+                {% endif %}
             </ul>
         </div>
     </nav>

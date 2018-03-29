@@ -1,9 +1,13 @@
 {% extends "base.html.twig" %}
 {% block layout_content %}
     {% for game in games %}
-        <a href="game/{{ game.slug }}">
-            <img style="height: 200px; width: 100%; display: block;" src="{{ vich_uploader_asset(game, 'imageFile') }}" alt="Card image">
-            <h3>{{ game.name }}</h3>
-        </a>
+        <div class="card border-info mb-3" style="max-width: 20rem;">
+            <a href="team/{{ game.slug }}">
+                <div class="card-header">{{ game.name }}</div>
+                <div class="card-body">
+                    <img style="height: 200px; width: 100%; display: block;" src="{{ vich_uploader_asset(game, 'imageFile') }}" alt="Card image">
+                </div>
+            </a>
+        </div>
     {% endfor %}
 {% endblock %}
