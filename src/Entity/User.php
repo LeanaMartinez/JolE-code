@@ -259,7 +259,7 @@ class User implements UserInterface, \Serializable
     {
         $this->plainPassword = $plainPassword;
     }
-    
+
 
     public function eraseCredentials()
     {
