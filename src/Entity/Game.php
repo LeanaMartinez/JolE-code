@@ -27,7 +27,7 @@ class Game
     protected $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $image;
@@ -39,7 +39,7 @@ class Game
     private $imageFile;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      * @var \DateTime
      */
     private $updatedAt;
@@ -80,10 +80,29 @@ class Game
      */
     private $slug;
 
+    /**
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="games")
+     */
+    private $users;
+
+    public function addUser(User $user)
+    {
+        $this->users[] = $user;
+    }
+    /**
+     * @return mixed
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
         $this->match = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     /**

@@ -1,11 +1,23 @@
 {% extends "base.html.twig" %}
 {% block layout_content %}
-    <h1>{{ team.name }}</h1>
-    <p class="lead">{{ team.image }}</p>
-    <p class="lead">Pays: {{ team.country }}</p>
-    <p class="lead">Jeu: {{ team.game }}</p>
-    <p class="lead">Division: {{ team.division }}</p>
+    <div class="bs-component">
+        <h1 class="card-header">{{ team.name }}</h1>
+        <img src="{{ vich_uploader_asset(team, 'imageFile') }}" style="height: 200px; width: 20%; display: block;">
+        <div class="card-body">
+            <p class="card-text">Pays: {{ team.country }}</p>
+            <p class="card-text">Jeu: {{ team.game }}</p>
+            <p class="card-text">Division: {{ team.division }}</p>
+        </div>
+    </div>
+    <div class="bs-component">
+        <button type="button" class="btn btn-info">
+            <a href="{{ path('add_fav_team', { 'id': team.id}) }}">Ajouter aux favoris</a>
+        </button>
+        <button type="button" class="btn btn-danger">
+            <a href="{{ path('remove_fav_team', { 'id': team.id}) }}">Supprimer des favoris</a>
+        </button>
+    </div>
     <div>
         <h2>PARTIE BLOG</h2>
     </div>
-{% endblock   %}
+{% endblock %}

@@ -17,11 +17,11 @@ class HomeController extends Controller
      */
     public function homePost(PostRepository $postRepository, MatchRepository $matchRepository)
     {
-        $post = $postRepository->LastPost();
+        $posts = $postRepository->LastPost();
         $match = $matchRepository->LastMatch();
 
         return $this->render('Content/home.html.twig', [
-            'post' => $post,
+            'posts' => $posts,
             'match' => $match
         ]);
     }

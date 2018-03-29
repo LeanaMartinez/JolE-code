@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+{% block layout_content %}
+    {% for game in games %}
+        <a href="game/{{ game.slug }}">
+            <img style="height: 200px; width: 100%; display: block;" src="{{ vich_uploader_asset(game, 'imageFile') }}" alt="Card image">
+            <h3>{{ game.name }}</h3>
+        </a>
+    {% endfor %}
+{% endblock %}

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -26,7 +27,7 @@ class Team
     protected $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $image;
@@ -38,7 +39,7 @@ class Team
     private $imageFile;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      * @var \DateTime
      */
     private $updatedAt;
@@ -59,6 +60,43 @@ class Team
      */
     protected $game;
 
+
+    /**
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="teams")
+     */
+    private $users;
+
+    /**
+     * @Gedmo\Slug(fields={"name"}, updatable=false, separator="-")
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    public function __construct() {
+        $this->users = new ArrayCollection();
+    }
+
+    public function addUser(User $user)
+    {
+        $this->users[] = $user;
+    }
 
     /**
      * @return mixed
@@ -169,12 +207,6 @@ class Team
     {
         return $this->name;
     }
-
-    /**
-     * @Gedmo\Slug(fields={"name"}, updatable=false, separator="-")
-     * @ORM\Column(name="slug", type="string", length=255)
-     */
-    private $slug;
 
     /**
      * @return mixed
