@@ -59,14 +59,9 @@ class User implements UserInterface, \Serializable
     private $plainPassword;
 
     /**
-     * @var array
-     */
-    private $roles;
-    /**
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
-
 
     /**
      * @ORM\Column(type="boolean")
@@ -261,7 +256,6 @@ class User implements UserInterface, \Serializable
     {
     }
 
-
     /**
      * @return mixed
      */
@@ -291,12 +285,13 @@ class User implements UserInterface, \Serializable
             $this->updatedAt = new \DateTime('now');
         }
     }
-/**
-* @return (Role|string)[] The user roles
-*/
+
+    /**
+    * @return (Role|string)[] The user roles
+    */
     public function getRoles()
     {
-        if ($this->getisAdmin()) {
+        if ($this->getIsAdmin()) {
             return ['ROLE_ADMIN'];
         }
         return ['ROLE_USER'];
@@ -304,7 +299,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return mixed
      */
-    public function getisActive()
+    public function getIsActive()
     {
         return $this->isActive;
     }
@@ -320,7 +315,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return mixed
      */
-    public function getisAdmin()
+    public function getIsAdmin()
     {
         return $this->isAdmin;
     }

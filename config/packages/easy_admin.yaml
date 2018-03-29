@@ -125,9 +125,8 @@ easy_admin:
                     - { property: 'username', type: 'string' }
                     - { property: 'email', type: 'string' }
                     - { property: 'password', type: 'string' }
-                    - { property: 'roles', type: 'array'}
-                    - { property: 'favTeam' }
-                    - { property: 'favGame' }
+                    - { property: 'teams', type: 'array' }
+                    - { property: 'isAdmin', type: 'boolean' }
             show:
                 fields:
                     - { property: 'id', type: 'integer' }
@@ -135,15 +134,13 @@ easy_admin:
                     - { property: 'username', type: 'string' }
                     - { property: 'email', type: 'string' }
                     - { property: 'password', type: 'string' }
-                    - { property: 'roles', type: 'array'}
-                    - { property: 'favTeam' }
-                    - { property: 'favGame' }
+                    - { property: 'teams', type: 'array'}
+                    - { property: 'isAdmin', type: 'boolean' }
             form:
                 fields:
                     - { property: 'imageFile', type: 'file' }
                     - { property: 'username' }
                     - { property: 'email' }
                     - { property: 'password' }
-                    - { property: 'roles'}
-                    - { property: 'favTeam' }
-                    - { property: 'favGame' }
+                    - { property: 'teams' }
+                    - { property: 'isAdmin' }

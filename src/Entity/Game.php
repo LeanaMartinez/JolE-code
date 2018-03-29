@@ -163,7 +163,6 @@ class Game
         }
     }
 
-
     public function getImageFile()
     {
         return $this->imageFile;
