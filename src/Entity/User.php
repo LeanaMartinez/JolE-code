@@ -1,5 +1,8 @@
 <?php
+
 namespace App\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -11,7 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="_user")
  * @Vich\Uploadable
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -78,13 +81,98 @@ class User implements UserInterface
     }
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="Team", inversedBy="users")
+     * @ORM\JoinTable(name="users_teams")
      */
-    public $favTeam;
+    private $teams;
+
+    public function addFavTeam(Team $team)
+    {
+        $team->addUser($this); // synchronously updating inverse side
+        $this->teams[] = $team;
+    }
+
+    public function removeFavTeam(Team $team)
+    {
+        if (!$this->teams->contains($team)) {
+            return;
+        }
+        $this->teams->removeElement($team);
+    }
+
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="Game", inversedBy="users")
+     * @ORM\JoinTable(name="users_games")
      */
-    public $favGame;
+    private $games;
+
+    /**
+     * @return mixed
+     */
+    public function getGames()
+    {
+        return $this->games;
+    }
+
+    /**
+     * @param mixed $games
+     */
+    public function setGames($games)
+    {
+        $this->games = $games;
+    }
+
+    public function addFavGame(Game $game)
+    {
+        $game->addUser($this); // synchronously updating inverse side
+        $this->games[] = $game;
+    }
+
+    public function removeFavGame(Game $game)
+    {
+        if (!$this->games->contains($game)) {
+            return;
+        }
+        $this->games->removeElement($game);
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
+
+    /**
+     * @param mixed $teams
+     */
+    public function setTeams($teams)
+    {
+        $this->teams = $teams;
+    }
+
+    public function __construct() {
+        $this->teams = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -155,6 +243,7 @@ class User implements UserInterface
         // see section on salt below
         return null;
     }
+
     /**
      * @return mixed
      */
@@ -169,6 +258,11 @@ class User implements UserInterface
     public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
     }
 
     public function eraseCredentials()
@@ -213,7 +307,6 @@ class User implements UserInterface
         if ($this->getisAdmin()) {
             return ['ROLE_ADMIN'];
         }
-
         return ['ROLE_USER'];
     }
     /**
@@ -247,4 +340,28 @@ class User implements UserInterface
     {
         $this->isAdmin = $isAdmin;
     }
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized);
+    }
+
 }
