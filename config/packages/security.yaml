@@ -19,7 +19,6 @@ security:
                 path: /logout
                 target: /
 
-
     access_control:
             # require ROLE_ADMIN for /admin*
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

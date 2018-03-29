@@ -19,14 +19,14 @@ class Match
 
     /**
      * One Product has One Shipment.
-     * @ORM\OneToOne(targetEntity="Team")
+     * @ORM\ManyToOne(targetEntity="Team")
      * @ORM\JoinColumn(name="team_a_id", referencedColumnName="id")
      */
     protected $teamA;
 
     /**
      * One Product has One Shipment.
-     * @ORM\OneToOne(targetEntity="Team")
+     * @ORM\ManyToOne(targetEntity="Team")
      * @ORM\JoinColumn(name="team_b_id", referencedColumnName="id")
      */
     protected $teamB;
