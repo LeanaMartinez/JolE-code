@@ -25,6 +25,13 @@
                     <button type="button" class="btn btn-danger">Déconnexion</button>
                 {% else %}
                     <button type="button" class="btn btn-success">Connexion</button>
+                <button type="button" class="btn btn-danger">
+                    <a href="{{ path('logout', {'page' : 'logout'}) }}">Déconnexion</a>
+                </button>
+                {% else %}
+                <button type="button" class="btn btn-success">
+                    <a href="{{ path('login', {'page' : 'login'}) }}">Connexion</a>
+                </button>
                 {% endif %}
             </ul>
         </div>

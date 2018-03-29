@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Game;
 use App\Repository\GameRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -15,8 +16,9 @@ class GameController extends Controller
      * @param $game_slug
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function gameSheet(GameRepository $gameRepository, $game_slug)
+    public function gameSheet(GameRepository $gameRepository, $game_slug, UserRepository $userRepository)
     {
+        $user = $userRepository->findAll();
         $game = $gameRepository->findOneBy(array('slug' => $game_slug));
 
         if (!$game instanceof Game) {
@@ -24,7 +26,8 @@ class GameController extends Controller
         }
 
         return $this->render('Content/game.html.twig', [
-            'game'=>$game,
+            'game' => $game,
+            'user' => $user
         ]);
     }
 }
