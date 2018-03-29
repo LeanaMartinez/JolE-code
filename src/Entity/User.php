@@ -62,10 +62,6 @@ class User implements UserInterface, \Serializable
      * @var array
      */
     private $roles;
-    /**
-     * @ORM\Column(name="is_active", type="boolean")
-     */
-    private $isActive;
 
 
     /**
@@ -76,9 +72,6 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->teams = new ArrayCollection();
-        $this->isActive = true;
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid('', true));
     }
 
     /**
@@ -300,21 +293,6 @@ class User implements UserInterface, \Serializable
             return ['ROLE_ADMIN'];
         }
         return ['ROLE_USER'];
-    }
-    /**
-     * @return mixed
-     */
-    public function getisActive()
-    {
-        return $this->isActive;
-    }
-
-    /**
-     * @param mixed $isActive
-     */
-    public function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
     }
 
     /**
