@@ -1,4 +1,4 @@
-# JolE-sport
+# JolE-sport 🎾 + 🖥 = 🤘🏻
 
 JolE-sport is a web application that allows you to follow e-sport activity. 
 You can find the main teams and the next matches of each game.
