@@ -105,4 +105,4 @@ Enter the home page adress.
 http://127.0.0.1:8000/
 ```
 
-You can browse JolE-sport application !
+You can browse JolE-sport application ! 🎉🍻
