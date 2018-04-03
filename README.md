@@ -33,7 +33,7 @@ Go to the JolE-sport project
 
 ```
 # customize the path
-$ cd path
+$ cd path/JolE-sport
 ```
 
 Install the requires and depedencies
