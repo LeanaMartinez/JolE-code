@@ -79,7 +79,8 @@ $ bin/console doctrine:fixtures:load
 
 or 
 
-- Import the ```.sql``` file in your Database administrator.
+- Import the ```data.sql``` file in your Database administrator.
+- The file is in the repo
 
 ## Using the app
 
