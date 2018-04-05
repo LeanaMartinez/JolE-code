@@ -58,7 +58,6 @@ class User implements UserInterface, \Serializable
      */
     private $plainPassword;
 
-
     /**
      * @ORM\Column(type="boolean")
      */
@@ -67,6 +66,22 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(name="is_active", type="boolean", nullable=true)
      */
     private $isActive;
+
+    /**
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="Team", inversedBy="users")
+     * @ORM\JoinTable(name="users_teams")
+     */
+    private $teams;
+
+    /**
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="Game", inversedBy="users")
+     * @ORM\JoinTable(name="users_games")
+     */
+    private $games;
+
+
     /**
      * @ORM\Column(type="string", length=128)
      */
@@ -76,13 +91,6 @@ class User implements UserInterface, \Serializable
     {
         $this->teams = new ArrayCollection();
     }
-
-    /**
-     * Many Users have Many Groups.
-     * @ORM\ManyToMany(targetEntity="Team", inversedBy="users")
-     * @ORM\JoinTable(name="users_teams")
-     */
-    private $teams;
 
     public function addFavTeam(Team $team)
     {
@@ -97,13 +105,6 @@ class User implements UserInterface, \Serializable
         }
         $this->teams->removeElement($team);
     }
-
-    /**
-     * Many Users have Many Groups.
-     * @ORM\ManyToMany(targetEntity="Game", inversedBy="users")
-     * @ORM\JoinTable(name="users_games")
-     */
-    private $games;
 
     /**
      * @return mixed
@@ -232,8 +233,6 @@ class User implements UserInterface, \Serializable
 
     public function getSalt()
     {
-        // you *may* need a real salt depending on your encoder
-        // see section on salt below
         return null;
     }
 
@@ -289,8 +288,8 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-    * @return (Role|string)[] The user roles
-    */
+     * @return (Role|string)[] The user roles
+     */
     public function getRoles()
     {
         if ($this->getIsAdmin()) {
@@ -314,6 +313,7 @@ class User implements UserInterface, \Serializable
     {
         $this->isAdmin = $isAdmin;
     }
+
     /** @see \Serializable::serialize() */
     public function serialize()
     {
@@ -321,8 +321,6 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
-            // see section on salt below
-            // $this->salt,
         ));
     }
 
@@ -335,10 +333,9 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
-            // see section on salt below
-            // $this->salt
             ) = unserialize($serialized);
     }
+
     /**
      * @return mixed
      */
@@ -346,6 +343,7 @@ class User implements UserInterface, \Serializable
     {
         return $this->resetPasswordToken;
     }
+
     /**
      * @param mixed $resetPasswordToken
      */

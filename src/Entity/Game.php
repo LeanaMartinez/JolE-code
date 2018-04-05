@@ -22,11 +22,6 @@ class Game
     private $id;
 
     /**
-     * @ORM\Column(type="string")
-     */
-    protected $name;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
@@ -43,6 +38,18 @@ class Game
      * @var \DateTime
      */
     private $updatedAt;
+
+    /** *
+     * @Gedmo\Slug(fields={"name"}, updatable=false, separator="-")
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="games")
+     */
+    private $users;
 
     /**
      * @ORM\Column(type="text")
@@ -74,22 +81,16 @@ class Game
      */
     protected $match;
 
-    /** *
-     * @Gedmo\Slug(fields={"name"}, updatable=false, separator="-")
-     * @ORM\Column(name="slug", type="string", length=255)
-     */
-    private $slug;
-
     /**
-     * Many Groups have Many Users.
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="games")
+     * @ORM\Column(type="string")
      */
-    private $users;
+    protected $name;
 
     public function addUser(User $user)
     {
         $this->users[] = $user;
     }
+
     /**
      * @return mixed
      */
@@ -274,7 +275,7 @@ class Game
     {
         $this->slug = $slug;
     }
-  
+
     public function __toString()
     {
         return $this->name;

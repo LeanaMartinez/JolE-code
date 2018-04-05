@@ -21,7 +21,7 @@ class TeamController extends Controller
         }
 
         return $this->render('Content/team.html.twig', [
-            'team'=>$team,
+            'team' => $team,
         ]);
     }
 }
