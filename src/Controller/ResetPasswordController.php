@@ -7,6 +7,7 @@
  */
 
 namespace App\Controller;
+
 use App\Entity\User;
 use App\Form\ForgotPassword;
 use App\Form\PasswordResetType;
@@ -32,10 +33,10 @@ class ResetPasswordController extends Controller
     {
         $form = $this->createForm(ForgotPassword::class);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $email = $form->get('email')->getData();
             $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email' => $email]);
-            if(!$user){
+            if (!$user) {
                 return $this->render('forgotpass/emailcheck.html.twig', [
                     'form' => $form->createView(),
                     'invalid_email' => $email,
@@ -45,7 +46,7 @@ class ResetPasswordController extends Controller
             $url = $this->generateUrl('login', [
                 'token' => $token,
             ], UrlGeneratorInterface::ABSOLUTE_URL);
-            $mailBody =  'Pour reset ton password click ici : ' . $url;
+            $mailBody = 'Pour reset ton password click ici : ' . $url;
             $message = (new Swift_Message('Nouveau mot de passe'))
                 ->setFrom(['jolesport.iesa@gmail.com' => 'Joliesport'])
                 ->setTo('alex.s95120@gmail.com')
@@ -94,4 +95,4 @@ class ResetPasswordController extends Controller
         ]);
 
     }
-    }
+}

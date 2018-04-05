@@ -13,7 +13,7 @@ class GameFixtures extends Fixture implements OrderedFixtureInterface
     {
         $i = 1;
         //Set test values in the table "Game" for 4 games
-        while ($i <= 4){
+        while ($i <= 4) {
             $game = new Game();
             $game->setName("Game n" . $i);
             /*banner*/

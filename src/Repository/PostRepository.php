@@ -21,9 +21,9 @@ class PostRepository extends ServiceEntityRepository
 
     public function LastPost($limit = 6)
     {
-       return $this->createQueryBuilder('p')
-        ->setMaxResults($limit)
-        ->getQuery()
-        ->getResult();
+        return $this->createQueryBuilder('p')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
     }
 }

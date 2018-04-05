@@ -22,11 +22,6 @@ class Team
     private $id;
 
     /**
-     * @ORM\Column(type="string")
-     */
-    protected $name;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
@@ -45,6 +40,23 @@ class Team
     private $updatedAt;
 
     /**
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="teams")
+     */
+    private $users;
+
+    /**
+     * @Gedmo\Slug(fields={"name"}, updatable=false, separator="-")
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $name;
+
+    /**
      * @ORM\Column(type="string")
      */
     protected $division;
@@ -59,19 +71,6 @@ class Team
      * @ORM\JoinColumn(nullable=false, name="game", referencedColumnName="id")
      */
     protected $game;
-
-
-    /**
-     * Many Groups have Many Users.
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="teams")
-     */
-    private $users;
-
-    /**
-     * @Gedmo\Slug(fields={"name"}, updatable=false, separator="-")
-     * @ORM\Column(name="slug", type="string", length=255)
-     */
-    private $slug;
 
     /**
      * @return \DateTime
@@ -89,7 +88,8 @@ class Team
         return $this->users;
     }
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->users = new ArrayCollection();
     }
 
