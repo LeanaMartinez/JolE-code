@@ -58,10 +58,24 @@ class User implements UserInterface, \Serializable
      */
     private $plainPassword;
 
+
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="boolean")
      */
-    private $roles;
+    private $isAdmin = false;
+    /**
+     * @ORM\Column(name="is_active", type="boolean", nullable=true)
+     */
+    private $isActive;
+    /**
+     * @ORM\Column(type="string", length=128)
+     */
+    private $resetPasswordToken = false;
+
+    public function __construct()
+    {
+        $this->teams = new ArrayCollection();
+    }
 
     /**
      * Many Users have Many Groups.
@@ -153,10 +167,6 @@ class User implements UserInterface, \Serializable
         $this->teams = $teams;
     }
 
-    public function __construct() {
-        $this->teams = new ArrayCollection();
-    }
-
     /**
      * @return mixed
      */
@@ -243,15 +253,10 @@ class User implements UserInterface, \Serializable
         $this->plainPassword = $plainPassword;
     }
 
-    public function getRoles()
-    {
-        return array('ROLE_USER');
-    }
 
     public function eraseCredentials()
     {
     }
-
 
     /**
      * @return mixed
@@ -272,11 +277,43 @@ class User implements UserInterface, \Serializable
     /**
      * @param mixed $roles
      */
-    public function setRoles($roles)
+
+    public function setRoles(File $roles = null)
     {
-        $this->roles = $roles;
+        $this->imageFile = $roles;
+
+        if ($roles) {
+
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
+    /**
+    * @return (Role|string)[] The user roles
+    */
+    public function getRoles()
+    {
+        if ($this->getIsAdmin()) {
+            return ['ROLE_ADMIN'];
+        }
+        return ['ROLE_USER'];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsAdmin()
+    {
+        return $this->isAdmin;
+    }
+
+    /**
+     * @param mixed $isAdmin
+     */
+    public function setIsAdmin($isAdmin)
+    {
+        $this->isAdmin = $isAdmin;
+    }
     /** @see \Serializable::serialize() */
     public function serialize()
     {
@@ -289,7 +326,9 @@ class User implements UserInterface, \Serializable
         ));
     }
 
-    /** @see \Serializable::unserialize() */
+    /** @see \Serializable::unserialize()
+     * @param $serialized
+     */
     public function unserialize($serialized)
     {
         list (
@@ -300,5 +339,20 @@ class User implements UserInterface, \Serializable
             // $this->salt
             ) = unserialize($serialized);
     }
+    /**
+     * @return mixed
+     */
+    public function getResetPasswordToken()
+    {
+        return $this->resetPasswordToken;
+    }
+    /**
+     * @param mixed $resetPasswordToken
+     */
+    public function setResetPasswordToken($resetPasswordToken)
+    {
+        $this->resetPasswordToken = $resetPasswordToken;
+    }
+
 
 }

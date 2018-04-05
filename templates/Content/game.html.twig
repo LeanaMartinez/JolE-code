@@ -9,12 +9,20 @@
         <p>Nombre de joueur: {{ game.playerNumber }}</p>
     </div>
     <div class="bs-component">
-        <button type="button" class="btn btn-info">
-            <a href="{{ path('add_fav_game', { 'id': game.id}) }}">Ajouter au favori</a>
-        </button>
-        <button type="button" class="btn btn-danger">
-            <a href="{{ path('remove_fav_game', { 'id': game.id}) }}">Supprimer des favoris</a>
-        </button>
+        {% if app.user %}
+                {% if game.name in app.user.games %}
+                    <button type="button" class="btn btn-danger">
+                        <a href="{{ path('remove_fav_game', { 'id': game.id}) }}">Supprimer des favoris</a>
+                    </button>
+                {% else %}
+                    <button type="button" class="btn btn-info">
+                        <a href="{{ path('add_fav_game', { 'id': game.id}) }}">Ajouter aux favoris</a>
+                    </button>
+                {% endif %}
+        {% else %}
+            <button type="button" class="btn btn-info">
+                <a href="{{ path('profile', {'page': 'profile'}) }}">Ajouter aux favoris</a>
+            </button>
+        {% endif %}
     </div>
-    <h2>PARTIE BLOG</h2>
 {% endblock %}

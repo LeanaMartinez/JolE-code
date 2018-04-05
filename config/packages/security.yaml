@@ -17,7 +17,7 @@ security:
                 failure_path: /reject
             logout:
                 path: /logout
-                target: /home
+                target: /
 
     access_control:
             # require ROLE_ADMIN for /admin*
