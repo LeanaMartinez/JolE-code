@@ -29,7 +29,8 @@ class ProfileController extends Controller
      * @param ObjectManager $manager
      * @return int|string
      */
-    public function addFavTeamAction(Request $request, Team $team, ObjectManager $manager) {
+    public function addFavTeamAction(Request $request, Team $team, ObjectManager $manager)
+    {
 
         $user = $this->getUser();
         $user->addFavTeam($team);
@@ -40,7 +41,7 @@ class ProfileController extends Controller
         return $this->render('Content/profile.html.twig', [
             'controller_name' => 'ProfileController',
         ]);
-       }
+    }
 
     /**
      * @Route("/deleteFavTeam/{id}", name="remove_fav_team")
@@ -49,11 +50,12 @@ class ProfileController extends Controller
      * @param ObjectManager $manager
      * @return int|string
      */
-    public function removeFavTeamAction(Request $request, Team $team, ObjectManager $manager) {
+    public function removeFavTeamAction(Request $request, Team $team, ObjectManager $manager)
+    {
 
-            $user = $this->getUser();
-            $user->removeFavTeam($team);
-            $manager->flush();
+        $user = $this->getUser();
+        $user->removeFavTeam($team);
+        $manager->flush();
 
         return $this->render('Content/profile.html.twig', [
             'controller_name' => 'ProfileController',
@@ -67,7 +69,8 @@ class ProfileController extends Controller
      * @param ObjectManager $manager
      * @return int|string
      */
-    public function addFavGameAction(Request $request, Game $game, ObjectManager $manager) {
+    public function addFavGameAction(Request $request, Game $game, ObjectManager $manager)
+    {
 
         $user = $this->getUser();
         $user->addFavGame($game);
@@ -87,7 +90,8 @@ class ProfileController extends Controller
      * @param ObjectManager $manager
      * @return int|string
      */
-    public function removeFavGameAction(Request $request, Game $game, ObjectManager $manager) {
+    public function removeFavGameAction(Request $request, Game $game, ObjectManager $manager)
+    {
 
         $user = $this->getUser();
         $user->removeFavGame($game);
@@ -97,7 +101,6 @@ class ProfileController extends Controller
             'controller_name' => 'ProfileController',
         ]);
     }
-
 
 
 }

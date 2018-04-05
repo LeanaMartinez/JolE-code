@@ -7,7 +7,8 @@
         <h4>Vos équipes favorites</h4>
         {% if app.user.teams is empty %}
             <p class="card-text">
-                Vos n'avez pas encore d'équipe préférée. Vous pouvez en ajouter <a href="{{ path('all-teams') }}">ici</a>
+                Vos n'avez pas encore d'équipe préférée. Vous pouvez en ajouter <a
+                        href="{{ path('all-teams') }}">ici</a>
             </p>
         {% else %}
             {% for userteam in app.user.teams %}

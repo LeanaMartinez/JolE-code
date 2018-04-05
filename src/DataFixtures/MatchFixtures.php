@@ -13,8 +13,8 @@ class MatchFixtures extends Fixture implements OrderedFixtureInterface
     {
         $i = 1;
         //Set test values in the table "_match" for 4 matches
-        while ($i <= 4){
-            $j = $this->hasReference('team_' . ($i+1)) ? $i+1 : 1;
+        while ($i <= 4) {
+            $j = $this->hasReference('team_' . ($i + 1)) ? $i + 1 : 1;
 
             $match = new Match();
             $match->setTeamA($this->getReference('team_' . $i));

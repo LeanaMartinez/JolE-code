@@ -53,7 +53,7 @@ class PostController extends Controller
         }
 
         return $this->render('Content/blog.html.twig', [
-            'blog'=>$blog,
+            'blog' => $blog,
         ]);
     }
 }

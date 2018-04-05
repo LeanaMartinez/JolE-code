@@ -13,7 +13,7 @@ class PostFixtures extends Fixture implements OrderedFixtureInterface
     {
         $i = 1;
         //Set test values in the table "Post" for 8 posts
-        while ($i <= 8){
+        while ($i <= 8) {
             $post = new Post();
             $post->setTitle("Titre n" . $i);
             $post->setBody("Body n" . $i);

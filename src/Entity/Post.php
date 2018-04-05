@@ -21,12 +21,6 @@ class Post
     private $id;
 
     /**
-     * @ORM\Column(type="string")
-     */
-    protected $title;
-
-    /**
-
      * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
@@ -43,6 +37,17 @@ class Post
      * @var \DateTime
      */
     private $updatedAt;
+
+    /**
+     * @Gedmo\Slug(fields={"title"}, updatable=false, separator="-")
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $title;
 
     /**
      * @ORM\Column(type="text")
@@ -163,12 +168,6 @@ class Post
     {
         $this->updated = $updated;
     }
-
-    /**
-     * @Gedmo\Slug(fields={"title"}, updatable=false, separator="-")
-     * @ORM\Column(name="slug", type="string", length=255)
-     */
-    private $slug;
 
     /**
      * @return mixed

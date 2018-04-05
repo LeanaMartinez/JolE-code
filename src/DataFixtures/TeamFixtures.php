@@ -16,7 +16,7 @@ class TeamFixtures extends Fixture implements OrderedFixtureInterface
         //Set test values in the table "Team" for 4 teams
         while ($i <= 4) {
             $team = new Team();
-            $team->setGame($this->getReference('game_'. $i));
+            $team->setGame($this->getReference('game_' . $i));
             $team->setName("Team n" . $i);
             /*logo*/
             $team->setDivision("Division n" . $i);
